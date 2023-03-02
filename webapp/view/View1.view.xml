@@ -1,10 +1,5 @@
 <mvc:View controllerName="com.levi.businesshealthcheck.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns:viz="sap.viz.ui5.controls"
-    xmlns:layout="sap.ui.layout"
-    xmlns:f="sap.f"
-    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
-    xmlns:viz.data="sap.viz.ui5.data"
     xmlns:core="sap.ui.core"
     xmlns="sap.m">
     <Page id="page" class="pageBg toolbarCls fltFtrClss" visible="{device>/system/phone}" floatingFooter="true">
@@ -19,13 +14,6 @@
         </customHeader>
         <content>
             <VBox width="100%" class="vboxClass">
-                <!-- <OverflowToolbar height="3rem">
-                    <core:Icon src="sap-icon://menu2" color="#ffffff" class="leftMenuIconClass"/>
-                    <ToolbarSpacer/>
-                    <Label text="Business Health Check" class="labelClss"/>
-                    <ToolbarSpacer/>
-                    <core:Icon src="sap-icon://overflow" color="#000000" class="rightMenuIconClass"/>
-                </OverflowToolbar> -->
                 <Link text="Market Summary" class="sapUiTinyMarginBegin sapUiMediumMarginTop linkCls"/>
                 <HBox justifyContent="SpaceBetween" alignItems="End" alignContent="End" width="100%" class="sapUiMediumMarginBottom">
                     <ObjectNumber class="objectNumberTxt objectNumberUnit sapUiTinyMarginBegin sapUiTinyMarginTop" number="{ViewModel>/Amount}" unit="{ViewModel>/Currency}" />

@@ -1,0 +1,94 @@
+_schema-version: "3.2"
+ID: comlevibusinesshealthcheck
+description: Business Health Check
+version: 0.0.1
+modules:
+- name: comlevibusinesshealthcheck-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: comlevibusinesshealthcheck-destination-service
+    parameters:
+      content-target: true
+  - name: comlevibusinesshealthcheck-repo-host
+    parameters:
+      service-key:
+        name: comlevibusinesshealthcheck-repo-host-key
+  - name: comlevibusinesshealthcheck-uaa
+    parameters:
+      service-key:
+        name: comlevibusinesshealthcheck-uaa-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: comlevibusinesshealthcheck_html_repo_host
+          ServiceInstanceName: comlevibusinesshealthcheck-html5-srv
+          ServiceKeyName: comlevibusinesshealthcheck-repo-host-key
+          sap.cloud.service: comlevibusinesshealthcheck
+        - Authentication: OAuth2UserTokenExchange
+          Name: comlevibusinesshealthcheck_uaa
+          ServiceInstanceName: comlevibusinesshealthcheck-xsuaa-srv
+          ServiceKeyName: comlevibusinesshealthcheck-uaa-key
+          sap.cloud.service: comlevibusinesshealthcheck
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: comlevibusinesshealthcheck-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: comlevibusinesshealthcheck-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - comlevibusinesshealthcheck.zip
+      name: comlevibusinesshealthcheck
+      target-path: resources/
+- name: comlevibusinesshealthcheck
+  type: html5
+  path: .
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: comlevibusinesshealthcheck-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: comlevibusinesshealthcheck-destination-service
+    service-plan: lite
+- name: comlevibusinesshealthcheck-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: comlevibusinesshealthcheck-xsuaa-srv
+    service-plan: application
+- name: comlevibusinesshealthcheck-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: comlevibusinesshealthcheck-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true

@@ -1,0 +1,119 @@
+/* Enter your custom styles here */
+.pageBg {
+    background: #ffffff;
+}
+.vboxClass{
+    background: #ab9dff;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    padding-bottom: 35px;
+}
+.toolbarCls .sapMIBar.sapMHeader-CTX {
+    background: #ab9dff;
+}
+.labelClss {
+    font-size: 15px !important;
+    color: #000000 !important;
+    text-shadow: none !important;
+    font-weight: bold !important;
+}
+.leftMenuIconClass {
+    background: #000000 !important;
+    padding: 9px !important;
+    border-radius: 30px !important;
+}
+.rightMenuIconClass {
+    background: #968ae0 !important;
+    padding: 9px !important;
+    border-radius: 30px !important;
+}
+.linkCls {
+    color: #545383 !important;
+    text-shadow: none !important;
+    font-size: 16px !important;
+    text-decoration: underline !important;
+}
+.objectNumberTxt .sapMObjectNumberText {
+    color: #000000;
+    text-shadow: none !important;
+    font-size: 32px !important;
+    display: inline-block;
+    white-space: pre;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    text-decoration: none;
+    vertical-align: middle;
+    line-height: 2rem;
+    font-family: "72","72full",Arial,Helvetica,sans-serif;
+    text-shadow: 0 0 0.125rem #fff;
+}
+.objectNumberUnit .sapMObjectNumberUnit {
+    color: #000000;
+    text-shadow: none !important;
+    font-weight: bold !important;
+    font-size: 16px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    text-decoration: none;
+    height: 1rem;
+    vertical-align: -webkit-baseline-middle;
+    font-family: "72-Light","72-Lightfull","72","72full",Arial,Helvetica,sans-serif;
+}
+.trendTxtCls {
+    color: #1d2d3e !important;
+    font-size: 16px !important;
+}
+.notificationListItemCls .sapMNLIItemTextLineClamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: 50px !important;
+}
+.notificationListCls .sapMNLI {
+    background: #f2e6fa;
+    border-radius: 12px;
+    margin: 10px !important;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+.NLITitleCls .sapMNLITitleText {
+    font-size: 16px;
+}
+.NLIDescriptionCls .sapMNLIDescription {
+    color: #1d2d3e !important;
+}
+.NLIFooter .sapMNLIFooterItem {
+    color: #556b82 !important;
+}
+.boldTxtClss {
+    color: #000000 !important;
+    text-shadow: none !important;
+    font-weight: bold;
+}
+.highLowCls {
+    border-radius: 12px !important;
+    margin: 10px !important;
+    background: #f2f2f4 !important;
+    padding: 10px !important;
+}
+.normalTxtCls {
+    color: #1d2d3e;
+}
+.btnTxt .sapMBtnInner.sapMBtnText {
+    color: #ffffff !important;
+}
+.ftnBtnBackgroundClss {
+    background: #000000 !important;
+    border-radius: 12px;
+    height: 2.5rem !important;
+}
+.fltFtrClss .sapMTB-Transparent-CTX.sapMTB {
+    background: transparent !important;
+    padding: 0 !important;
+}

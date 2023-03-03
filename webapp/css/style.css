@@ -1,4 +1,4 @@
-/* Enter your custom styles here */
+/* CSS for Home Page */
 .pageBg {
     background: #ffffff;
 }
@@ -117,3 +117,69 @@
     background: transparent !important;
     padding: 0 !important;
 }
+
+/* CSS for Menu Dialog */
+.menuClass .sapUiMnuItm {
+    display: block;
+    height: 1.8rem;
+    width: 15rem;
+    line-height: 2rem;
+    white-space: nowrap;
+    position: relative;
+    padding: 0.5rem;
+    border-bottom: 1px solid #a8b3bd !important;
+    padding: 18px;
+}
+
+.menuClass .sapUiMnuItm.sapUiMnuItmHov {
+    color: #04458f;
+    outline: none !important;
+}
+
+.menuClass .sapUiMnuLst {
+    padding: 0;
+    margin: 0;
+    display: block;
+    cursor: default;
+    color: #000000;
+    font-size: 0.875rem;
+    font-family: "72", "72full", Arial, Helvetica, sans-serif;
+}
+
+.menuClass .sapUiMnuItmTxt {
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    text-shadow: none;
+}
+
+.menuClass .sapUiMnuItmIco>.sapUiIcon {
+    font-size: 1.1rem !important;
+    color: #000000 !important;
+}
+
+.menuItemClass .sapUiMnuItmFirst {
+    background: #000000 !important;
+    color: #ffffff !important;
+    font-style: normal !important;
+    margin-left: -2rem !important;
+    width: 125% !important;
+}
+.vbox1RightMoveAnimation {
+    top: 0px !important;
+    bottom: 0px !important;
+    animation-name: moveVbox1ToRight;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes moveVbox1ToRight {
+    from {
+        left: -15rem;
+    }
+
+    to {
+        left: 0rem;
+    }
+}
+
+/* CSS for Daily Sales Page */

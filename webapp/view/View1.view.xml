@@ -1,53 +1,68 @@
-<mvc:View controllerName="com.levi.businesshealthcheck.controller.View1"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns:core="sap.ui.core"
-    xmlns="sap.m">
-    <Page id="page" class="pageBg toolbarCls fltFtrClss" visible="{device>/system/phone}" floatingFooter="true">
-        <customHeader>
-            <OverflowToolbar height="4rem" width="100%" style="Clear">
-                <core:Icon src="sap-icon://menu2" color="#ffffff" class="leftMenuIconClass"/>
-                <ToolbarSpacer/>
-                <Label text="Business Health Check" class="labelClss"/>
-                <ToolbarSpacer/>
-                <core:Icon src="sap-icon://overflow" color="#000000" class="rightMenuIconClass"/>
-            </OverflowToolbar>
-        </customHeader>
-        <content>
-            <VBox width="100%" class="vboxClass">
-                <Link text="Market Summary" class="sapUiTinyMarginBegin sapUiMediumMarginTop linkCls"/>
-                <HBox justifyContent="SpaceBetween" alignItems="End" alignContent="End" width="100%" class="sapUiMediumMarginBottom">
-                    <ObjectNumber class="objectNumberTxt objectNumberUnit sapUiTinyMarginBegin sapUiTinyMarginTop" number="{ViewModel>/Amount}" unit="{ViewModel>/Currency}" />
-                    <HBox class="sapUiSmallMarginEnd">
-                        <core:Icon src="{ViewModel>/Trend}" color="#1d2d3e"/>
-                        <Text text="{ViewModel>/TrendSymbol}{ViewModel>/TrendValue} {ViewModel>/TrendPercentage}" class="trendTxtCls sapUiTinyMarginBegin"/>
+<mvc:View controllerName="com.levi.businesshealthcheck.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:core="sap.ui.core" xmlns="sap.m">
+    <NavContainer id="idNavContainer">
+        <Page id="idHomePage" class="pageBg toolbarCls fltFtrClss" visible="{device>/system/phone}" floatingFooter="true">
+            <customHeader>
+                <OverflowToolbar height="4rem" width="100%" style="Clear">
+                    <core:Icon src="sap-icon://menu2" color="#ffffff" class="leftMenuIconClass" press="onMenuPress" />
+                    <ToolbarSpacer />
+                    <Label text="Business Health Check" class="labelClss" />
+                    <ToolbarSpacer />
+                    <core:Icon src="sap-icon://overflow" color="#000000" class="rightMenuIconClass" />
+                </OverflowToolbar>
+            </customHeader>
+            <content>
+                <VBox width="100%" class="vboxClass">
+                    <Link text="Market Summary" class="sapUiTinyMarginBegin sapUiMediumMarginTop linkCls" target="_blank" href="{ViewModel>/MarketSummary}" />
+                    <HBox justifyContent="SpaceBetween" alignItems="End" alignContent="End" width="100%" class="sapUiMediumMarginBottom">
+                        <ObjectNumber class="objectNumberTxt objectNumberUnit sapUiTinyMarginBegin sapUiTinyMarginTop" number="{ViewModel>/Amount}" unit="{ViewModel>/Currency}" />
+                        <HBox class="sapUiSmallMarginEnd">
+                            <core:Icon src="{ViewModel>/Trend}" color="#1d2d3e" />
+                            <Text text="{ViewModel>/TrendSymbol}{ViewModel>/TrendValue} {ViewModel>/TrendPercentage}" class="trendTxtCls sapUiTinyMarginBegin" />
+                        </HBox>
+                    </HBox>
+                    <core:HTML afterRendering="onRender" content="&lt;canvas id=&quot;myChart&quot;&gt;&lt;/canvas&gt;" />
+                </VBox>
+                <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center" class="highLowCls">
+                    <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center" width="50%">
+                        <Text text="High" class="normalTxtCls sapUiSmallMarginBegin" />
+                        <Text text="{ViewModel>/High}" class="boldTxtClss" />
+                    </HBox>
+                    <core:Icon src="sap-icon://circle-task-2" color="#8b8a8d" size="8px" class="sapUiSmallMarginBeginEnd" />
+                    <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center" width="50%">
+                        <Text text="Low" class="normalTxtCls" />
+                        <Text text="{ViewModel>/Low}" class="boldTxtClss sapUiSmallMarginEnd" />
                     </HBox>
                 </HBox>
-                <core:HTML afterRendering="onRender" content="&lt;canvas id=&quot;myChart&quot;&gt;&lt;/canvas&gt;"></core:HTML>
-            </VBox>
-            <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center" class="highLowCls">
-                <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center" width="50%">
-                    <Text text="High" class="normalTxtCls sapUiSmallMarginBegin"/>
-                    <Text text="{ViewModel>/High}" class="boldTxtClss"/>
-                </HBox>
-                <core:Icon src="sap-icon://circle-task-2" color="#8b8a8d" size="8px" class="sapUiSmallMarginBeginEnd"/>
-                <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center" width="50%">
-                    <Text text="Low" class="normalTxtCls"/>
-                    <Text text="{ViewModel>/Low}" class="boldTxtClss sapUiSmallMarginEnd"/>
-                </HBox>
-            </HBox>
-            <NotificationList class="notificationListCls">
-                <NotificationListItem class="NLITitleCls NLIFooter NLIDescriptionCls notificationListItemCls" title="Becoming a Military-Inclusive employer" description="Meet Laurie Ellen Wash, out first-ever Hiring our Heroes Fellow." showCloseButton="false" datetime="a day ago" unread="true" priority="None">
-                </NotificationListItem>
-                <NotificationListItem class="NLITitleCls NLIFooter NLIDescriptionCls notificationListItemCls" title="Stussy and Levi's Collection Launches" description="Meet Laurie Ellen Wash, out first-ever Hiring our Heroes Fellow." showCloseButton="false" datetime="2 hour ago" unread="true" priority="None">
-                </NotificationListItem>
-            </NotificationList>
-        </content>
-        <footer>
-            <OverflowToolbar design="Transparent" height="3rem" width="100%">
-                <Button text="Daily Sales" class="ftnBtnBackgroundClss btnTxt" width="48%"/>
-                <ToolbarSpacer/>
-                <Button text="Daily Orders" class="ftnBtnBackgroundClss btnTxt" width="48%"/>
-            </OverflowToolbar>
-        </footer>
-    </Page>
+                <NotificationList class="notificationListCls">
+                    <NotificationListItem
+                        class="NLITitleCls NLIFooter NLIDescriptionCls notificationListItemCls"
+                        title="Becoming a Military-Inclusive employer"
+                        description="Meet Laurie Ellen Wash, out first-ever Hiring our Heroes Fellow."
+                        showCloseButton="false"
+                        datetime="a day ago"
+                        unread="true"
+                        priority="None"
+                    />
+                    <NotificationListItem
+                        class="NLITitleCls NLIFooter NLIDescriptionCls notificationListItemCls"
+                        title="Stussy and Levi's Collection Launches"
+                        description="Meet Laurie Ellen Wash, out first-ever Hiring our Heroes Fellow."
+                        showCloseButton="false"
+                        datetime="2 hour ago"
+                        unread="true"
+                        priority="None"
+                    />
+                </NotificationList>
+            </content>
+            <footer>
+                <OverflowToolbar design="Transparent" height="3rem" width="100%">
+                    <Button text="Daily Sales" class="ftnBtnBackgroundClss btnTxt" width="48%" press="onDailySalesPress"/>
+                    <ToolbarSpacer />
+                    <Button text="Daily Orders" class="ftnBtnBackgroundClss btnTxt" width="48%" />
+                </OverflowToolbar>
+            </footer>
+        </Page>
+        <Page id="idDailySales">
+        </Page>
+    </NavContainer>
 </mvc:View>

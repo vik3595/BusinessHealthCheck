@@ -1,12 +1,14 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
+    "sap/ui/core/Fragment",
+    "sap/ui/core/Popup",
     "com/levi/businesshealthcheck/utils/Chart.min"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, JSONModel) {
+    function (Controller, JSONModel, Fragment, Popup) {
         "use strict";
 
         return Controller.extend("com.levi.businesshealthcheck.controller.View1", {
@@ -19,7 +21,8 @@ sap.ui.define([
                     "TrendPercentage": "",
                     "TrendSymbol": "",
                     "High": "",
-                    "Low": ""
+                    "Low": "",
+                    "MarketSummary": "https://www.google.com/finance/?rlz=1C1GCEA_enIN919IN919&oq=Levi+share&aqs=chrome..69i57j0i512l3j0i22i30i625j69i65l2j69i60.4272j0j7&sourceid=chrome&ie=UTF-8&sa=X&ved=2ahUKEwiNg_PMvrf9AhWEIH0KHbDvDqwQ6M8CegQIKhAI"
                 });
                 this.getOwnerComponent().setModel(oModel, "ViewModel");
             },
@@ -32,7 +35,7 @@ sap.ui.define([
                     dataType: "json",
                     async: false,
                     success: function (data, textStatus, jqXHR) {
-                        var sLabel  = data['Meta Data']['1. Information'];
+                        var sLabel = data['Meta Data']['1. Information'];
                         var akeys = Object.keys(data['Time Series (Daily)']);
                         var aMonth = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                         var aLabels = [],
@@ -43,11 +46,11 @@ sap.ui.define([
                             iTrendValue = Math.abs(parseFloat(data['Time Series (Daily)'][akeys[0]]['1. open']) - parseFloat(data['Time Series (Daily)'][akeys[1]]['1. open'])).toFixed(2),
                             iTrendSymbol = parseFloat(data['Time Series (Daily)'][akeys[0]]['1. open']) > parseFloat(data['Time Series (Daily)'][akeys[1]]['1. open']) ? '+' : '-',
                             sPercentageChange = "";
-                        if(iTrendSymbol === "+") {
+                        if (iTrendSymbol === "+") {
                             sPercentageChange = ((parseFloat(data['Time Series (Daily)'][akeys[0]]['1. open']) - parseFloat(data['Time Series (Daily)'][akeys[1]]['1. open'])) / parseFloat(data['Time Series (Daily)'][akeys[1]]['1. open'])) * 100;
                         } else {
                             sPercentageChange = ((parseFloat(data['Time Series (Daily)'][akeys[1]]['1. open']) - parseFloat(data['Time Series (Daily)'][akeys[0]]['1. open'])) / parseFloat(data['Time Series (Daily)'][akeys[1]]['1. open'])) * 100;
-                        }    
+                        }
                         oViewModel.setProperty("/High", iHigh);
                         oViewModel.setProperty("/Low", iLow);
                         oViewModel.setProperty("/Trend", sTrend);
@@ -100,6 +103,16 @@ sap.ui.define([
                         });
                     }.bind(this)
                 });
+            },
+            onMenuPress: function () {
+                if(!this._oMenuDlg) {
+                    this._oMenuDlg = sap.ui.xmlfragment("idMenuDlg", "com.levi.businesshealthcheck.view.fragments.Menu", this);
+                    this.getView().addDependent(this._oMenuDlg);
+                }
+                this._oMenuDlg.open();
+            },
+            onDailySalesPress: function() {
+
             }
         });
     });

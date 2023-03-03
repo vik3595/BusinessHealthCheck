@@ -1,0 +1,10 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout">
+	<u:Menu itemSelect="handleMenuItemPress" class="menuClass vbox1RightMoveAnimation menuItemClass">
+		<u:MenuItem text="Vikas Kumar"/>
+		<u:MenuItem text="Home" icon="sap-icon://home"/>
+		<u:MenuItem text="Daily Sales" icon="sap-icon://sales-order-item"/>
+		<u:MenuItem text="Daily Orders" icon="sap-icon://customer-order-entry"/>
+		<u:MenuItem text="Market Summary" icon="sap-icon://marketing-campaign"/>
+		<u:MenuItem text="Newsletter" icon="sap-icon://newspaper"/>
+	</u:Menu>
+</core:FragmentDefinition>

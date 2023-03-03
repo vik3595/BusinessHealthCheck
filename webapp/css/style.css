@@ -2,37 +2,44 @@
 .pageBg {
     background: #ffffff;
 }
-.vboxClass{
+
+.vboxClass {
     background: #ab9dff;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
     padding-bottom: 35px;
 }
+
 .toolbarCls .sapMIBar.sapMHeader-CTX {
     background: #ab9dff;
 }
+
 .labelClss {
     font-size: 15px !important;
     color: #000000 !important;
     text-shadow: none !important;
     font-weight: bold !important;
 }
+
 .leftMenuIconClass {
     background: #000000 !important;
     padding: 9px !important;
     border-radius: 30px !important;
 }
+
 .rightMenuIconClass {
     background: #968ae0 !important;
     padding: 9px !important;
     border-radius: 30px !important;
 }
+
 .linkCls {
     color: #545383 !important;
     text-shadow: none !important;
     font-size: 16px !important;
     text-decoration: underline !important;
 }
+
 .objectNumberTxt .sapMObjectNumberText {
     color: #000000;
     text-shadow: none !important;
@@ -45,9 +52,10 @@
     text-decoration: none;
     vertical-align: middle;
     line-height: 2rem;
-    font-family: "72","72full",Arial,Helvetica,sans-serif;
+    font-family: "72", "72full", Arial, Helvetica, sans-serif;
     text-shadow: 0 0 0.125rem #fff;
 }
+
 .objectNumberUnit .sapMObjectNumberUnit {
     color: #000000;
     text-shadow: none !important;
@@ -61,12 +69,14 @@
     text-decoration: none;
     height: 1rem;
     vertical-align: -webkit-baseline-middle;
-    font-family: "72-Light","72-Lightfull","72","72full",Arial,Helvetica,sans-serif;
+    font-family: "72-Light", "72-Lightfull", "72", "72full", Arial, Helvetica, sans-serif;
 }
+
 .trendTxtCls {
     color: #1d2d3e !important;
     font-size: 16px !important;
 }
+
 .notificationListItemCls .sapMNLIItemTextLineClamp {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -74,6 +84,7 @@
     overflow: hidden;
     max-height: 50px !important;
 }
+
 .notificationListCls .sapMNLI {
     background: #f2e6fa;
     border-radius: 12px;
@@ -82,37 +93,46 @@
     display: flex;
     flex-direction: column;
 }
+
 .NLITitleCls .sapMNLITitleText {
     font-size: 16px;
 }
+
 .NLIDescriptionCls .sapMNLIDescription {
     color: #1d2d3e !important;
 }
+
 .NLIFooter .sapMNLIFooterItem {
     color: #556b82 !important;
 }
+
 .boldTxtClss {
     color: #000000 !important;
     text-shadow: none !important;
     font-weight: bold;
 }
+
 .highLowCls {
     border-radius: 12px !important;
     margin: 10px !important;
     background: #f2f2f4 !important;
-    padding: 10px !important;
+    padding: 12px !important;
 }
+
 .normalTxtCls {
     color: #1d2d3e;
 }
+
 .btnTxt .sapMBtnInner.sapMBtnText {
     color: #ffffff !important;
 }
+
 .ftnBtnBackgroundClss {
     background: #000000 !important;
     border-radius: 12px;
-    height: 2.5rem !important;
+    /* height: 2.5rem !important; */
 }
+
 .fltFtrClss .sapMTB-Transparent-CTX.sapMTB {
     background: transparent !important;
     padding: 0 !important;
@@ -164,6 +184,11 @@
     margin-left: -2rem !important;
     width: 125% !important;
 }
+
+.menuDlgCls {
+    border-radius: 0 !important;
+}
+
 .vbox1RightMoveAnimation {
     top: 0px !important;
     bottom: 0px !important;
@@ -180,6 +205,126 @@
     to {
         left: 0rem;
     }
+}
+
+/* CSS for Daily Orders Page */
+.toolbarDailyOrdersCls .sapMIBar.sapMHeader-CTX {
+    background: #ffffff;
+}
+
+.rightMenuIconDailyOrdersClass {
+    background: #e0e0e0 !important;
+    padding: 9px !important;
+    border-radius: 30px !important;
+}
+
+.vboxOrders {
+    background: #b7ddd2;
+    border-radius: 12px;
+    padding: 10px;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+.ordersTxtCls {
+    color: #556b81 !important;
+    font-size: 15px;
+}
+
+.dailyOrderChartVboxCls {
+    margin: 10px !important;
+    background: #ffffff !important;
+    border: 1px solid #909aa4 !important;
+    border-radius: 12px !important;
+    padding: 5px !important;
+}
+
+.vboxOpenClose {
+    margin-left: 10px !important;
+    margin-right: 5px !important;
+    border: 1px solid #909aa4 !important;
+    border-radius: 12px !important;
+    padding: 12px !important;
+}
+
+.vboxHighLow {
+    margin-left: 5px !important;
+    margin-right: 10px !important;
+    border: 1px solid #909aa4 !important;
+    border-radius: 12px !important;
+    padding: 12px !important;
+}
+
+.lightShadedTxt {
+    color: #758ca4 !important;
+}
+
+.highLowDailyOrdersCls {
+    border-radius: 12px !important;
+    margin: 10px !important;
+    padding: 12px !important;
+    border: 1px solid #909aa4 !important;
+    border-radius: 12px !important;
+}
+
+.optionList {
+    background: #000 !important;
+    border-radius: 10px !important;
+    margin-top: 5px !important;
+    margin-right: 5px !important;
+    margin-left: 5px !important;
+}
+
+.optionListTitle .sapMSLITitle,
+.sapMSLITitleOnly {
+    color: #f5f6f7 !important;
+}
+
+/* .optionsPopover {
+    background: transparent !important;
+    box-shadow: none !important;
+} */
+.optionsPopover {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.sapMPopover.sapMPopoverWithoutFooter .sapMPopoverCont,
+.sapMPopover .sapMIBar.sapMFooter-CTX {
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    background: transparent;
+    border: none !important;
+}
+
+.animateOptions {
+    animation: slidein 0.5s;
+}
+
+@keyframes slidein {
+    from {
+        margin-right: -5rem;
+    }
+
+    to {
+        margin-right: 0;
+    }
+}
+
+.bottomRightOptions {
+    background: #ffffff !important;
+    border-radius: 30px !important;
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    padding-top: 11px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    bottom: 20px;
+    right: 20px;
+    border: 1px solid #556b81;
 }
 
 /* CSS for Daily Sales Page */

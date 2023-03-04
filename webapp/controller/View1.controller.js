@@ -18,7 +18,7 @@ sap.ui.define([
                     path: oRootPath,
                 });
                 this.getView().setModel(oImageModel, "imageModel");
-                this.oBusyDailog = new sap.m.BusyDialog({ customIcon: this.getView().getModel("imageModel").getData().path, customIconRotationSpeed: 0, customIconWidth: '160px', customIconHeight: '70px' }).addStyleClass("sapUiPopupWithoutPadding");
+                this.oBusyDailog = new sap.m.BusyDialog({ customIcon: this.getView().getModel("imageModel").getData().path, customIconRotationSpeed: 0, customIconWidth: '120px', customIconHeight: '45px' }).addStyleClass("sapUiPopupWithoutPadding");
                 var oModel = new JSONModel({
                     "OptionIcon": "sap-icon://drill-up",
                     "Amount": "17.61",

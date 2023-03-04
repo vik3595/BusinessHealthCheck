@@ -199,7 +199,7 @@
 
 @keyframes moveVbox1ToRight {
     from {
-        left: -15rem;
+        left: -25rem;
     }
 
     to {
@@ -270,9 +270,10 @@
 .optionList {
     background: #000 !important;
     border-radius: 10px !important;
-    margin-top: 5px !important;
+    margin-top: 7px !important;
     margin-right: 5px !important;
     margin-left: 5px !important;
+    padding: 20px;
 }
 
 .optionListTitle .sapMSLITitle,
@@ -299,32 +300,41 @@
 }
 
 .animateOptions {
-    animation: slidein 0.5s;
+    /* animation: slidein 1s; */
+    right: 0px !important;
+    bottom: 70px !important;
+    animation-name: slidein;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
 }
 
 @keyframes slidein {
     from {
-        margin-right: -5rem;
+        margin-bottom: -15rem;
     }
 
     to {
-        margin-right: 0;
+        margin-bottom: 0;
     }
 }
 
 .bottomRightOptions {
-    background: #ffffff !important;
-    border-radius: 30px !important;
-    position: absolute;
+    border-radius: 50px !important;
     width: 2rem;
-    height: 2rem;
-    padding-top: 11px;
-    padding-bottom: 4px;
-    padding-left: 8px;
-    padding-right: 8px;
-    bottom: 20px;
-    right: 20px;
+    height: 1.5rem;
+    padding-top: 10px;
+    padding-bottom: 9px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border: 1.5px solid #a8b3bd;
+}
+.fixedTxtCls {
+    background: #000000 !important;
+    font-size: 16px !important;
+    border-radius: 10px !important;
+    color: #ffffff !important;
+    padding-top: 12px;
+    padding-bottom: 12px;
     border: 1px solid #556b81;
 }
-
 /* CSS for Daily Sales Page */

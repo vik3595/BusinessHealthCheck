@@ -1,8 +1,8 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-    <Popover id="myPopover" placement="Auto" showHeader="false" showArrow="false" class="animateOptions optionsPopover">
+    <Popover id="myPopover" placement="Auto" showHeader="false" showArrow="false" class="animateOptions optionsPopover" afterClose="onAfterOptionClose" afterOpen="onAfterOptionOpen">
         <content>
-            <StandardListItem title="By Markets" class="optionList optionListTitle" />
-            <StandardListItem title="By Channels" class="optionList optionListTitle" />
+            <StandardListItem title="By Markets" class="optionList optionListTitle" type="Active" press="onSelectOption"/>
+            <StandardListItem title="By Channels" class="optionList optionListTitle" type="Active" press="onSelectOption"/>
         </content>
     </Popover>
 </core:FragmentDefinition>

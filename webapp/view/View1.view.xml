@@ -63,14 +63,14 @@
             </footer>
         </Page>
         <Page id="idDailySales" />
-        <Page id="idDailyOrders" class="pageBg toolbarDailyOrdersCls">
+        <Page id="idDailyOrders" class="pageBg toolbarDailyOrdersCls fltFtrClss" floatingFooter="true">
             <customHeader>
                 <OverflowToolbar height="4rem" width="100%" style="Clear">
                     <core:Icon src="sap-icon://menu2" color="#ffffff" class="leftMenuIconClass" press="onMenuPress" />
                     <ToolbarSpacer />
                     <Label text="Daily Orders" class="labelClss" />
                     <ToolbarSpacer />
-                    <core:Icon src="sap-icon://overflow" color="#000000" class="rightMenuIconDailyOrdersClass" press="onRightMenuPress"/>
+                    <core:Icon src="sap-icon://overflow" color="#000000" class="rightMenuIconDailyOrdersClass"/>
                 </OverflowToolbar>
             </customHeader>
             <content>
@@ -87,25 +87,25 @@
                 <VBox class="dailyOrderChartVboxCls">
                     <HBox justifyContent="SpaceBetween" alignContent="Center" alignItems="Center" width="100%" class="sapUiTinyMarginTop sapUiSmallMarginBottom">
                         <HBox justifyContent="Start" alignContent="Center" alignItems="Center" width="50%" class="sapUiTinyMarginBegin">
-                            <ToggleButton text="Surface" class="sapUiTinyMarginEnd"/>
+                            <ToggleButton text="Surface" class="sapUiTinyMarginEnd" />
                             <ToggleButton text="Depth" />
                         </HBox>
                         <HBox justifyContent="End" alignContent="Center" alignItems="Center" width="50%" class="sapUiTinyMarginEnd">
-                            <Label text="Range" showColon="true" class="normalTxtCls sapUiTinyMarginEnd"/>
+                            <Label text="Range" showColon="true" class="normalTxtCls sapUiTinyMarginEnd" />
                             <Select selectedKey="Mar" class="selectCls selectLblCls selectArrCls" width="4.5rem">
                                 <items>
-                                    <core:Item key="Jan" text="Jan"/>
-                                    <core:Item key="Feb" text="Feb"/>
-                                    <core:Item key="Mar" text="Mar"/>
-                                    <core:Item key="Apr" text="Apr"/>
-                                    <core:Item key="May" text="May"/>
-                                    <core:Item key="Jun" text="Jun"/>
-                                    <core:Item key="Jul" text="Jul"/>
-                                    <core:Item key="Aug" text="Aug"/>
-                                    <core:Item key="Sep" text="Sep"/>
-                                    <core:Item key="Oct" text="Oct"/>
-                                    <core:Item key="Nov" text="Nov"/>
-                                    <core:Item key="Dec" text="Dec"/>
+                                    <core:Item key="Jan" text="Jan" />
+                                    <core:Item key="Feb" text="Feb" />
+                                    <core:Item key="Mar" text="Mar" />
+                                    <core:Item key="Apr" text="Apr" />
+                                    <core:Item key="May" text="May" />
+                                    <core:Item key="Jun" text="Jun" />
+                                    <core:Item key="Jul" text="Jul" />
+                                    <core:Item key="Aug" text="Aug" />
+                                    <core:Item key="Sep" text="Sep" />
+                                    <core:Item key="Oct" text="Oct" />
+                                    <core:Item key="Nov" text="Nov" />
+                                    <core:Item key="Dec" text="Dec" />
                                 </items>
                             </Select>
                         </HBox>
@@ -145,8 +145,14 @@
                         <Text text="{ViewModel>/Volume}" class="boldTxtClss" />
                     </HBox>
                 </HBox>
-                <core:Icon src="sap-icon://collapse-group" visible="false" color="#000" size="1.5rem" class="bottomRightOptions"/>
             </content>
+            <footer>
+                <OverflowToolbar design="Transparent" height="3.5rem" width="100%">
+                    <Text id="idOption" text="Showing: By Markets" textAlign="Center" class="fixedTxtCls" width="80%"/>
+                    <ToolbarSpacer />
+                    <core:Icon src="{ViewModel>/OptionIcon}" color="#000" backgroundColor="#e0e0e0" size="1.4rem" class="bottomRightOptions" press="onOptionMenuPress"/>
+                </OverflowToolbar>
+            </footer>
         </Page>
     </NavContainer>
 </mvc:View>

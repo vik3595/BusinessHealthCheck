@@ -13,7 +13,14 @@ sap.ui.define([
         return Controller.extend("com.levi.businesshealthcheck.controller.View1", {
             formatter: formatter,
             onInit: function () {
+                var oRootPath = jQuery.sap.getModulePath("com.levi.businesshealthcheck", "/img/levi.gif");
+                var oImageModel = new JSONModel({
+                    path: oRootPath,
+                });
+                this.getView().setModel(oImageModel, "imageModel");
+                this.oBusyDailog = new sap.m.BusyDialog({ customIcon: this.getView().getModel("imageModel").getData().path, customIconRotationSpeed: 0, customIconWidth: '160px', customIconHeight: '70px' }).addStyleClass("sapUiPopupWithoutPadding");
                 var oModel = new JSONModel({
+                    "OptionIcon": "sap-icon://drill-up",
                     "Amount": "17.61",
                     "Currency": "USD",
                     "Trend": "",
@@ -28,6 +35,7 @@ sap.ui.define([
             },
             onRender: function () {
                 var oViewModel = this.getOwnerComponent().getModel("ViewModel");
+                this.oBusyDailog.open();
                 jQuery.ajax({
                     type: "GET",
                     contentType: "application/json",
@@ -117,6 +125,7 @@ sap.ui.define([
                                 }
                             }
                         });
+                        this.oBusyDailog.close();
                     }.bind(this)
                 });
             },
@@ -137,7 +146,7 @@ sap.ui.define([
             onDailyOrdersPress: function () {
                 var oNavContainer = this.getView().byId("idNavContainer");
                 oNavContainer.to(this.getView().byId("idDailyOrders"), "baseSlide");
-                var oViewModel = this.getOwnerComponent().getModel("ViewModel");
+                this.oBusyDailog.open();
                 jQuery.ajax({
                     type: "GET",
                     contentType: "application/json",
@@ -194,15 +203,36 @@ sap.ui.define([
                                 }
                             }
                         });
+                        this.oBusyDailog.close();
                     }.bind(this)
                 });
             },
-            onRightMenuPress: function(oEvt) {
-                if (!this._oOptionDlg) {
-                    this._oOptionDlg = sap.ui.xmlfragment("idMenuDlg", "com.levi.businesshealthcheck.view.fragments.Options", this);
-                    this.getView().addDependent(this._oOptionDlg);
+            onOptionMenuPress: function (oEvt) {
+                if (oEvt.getSource().getSrc() === "sap-icon://decline") {
+                    this._oOptionDlg.close();
+                } else {
+                    if (!this._oOptionDlg) {
+                        this._oOptionDlg = sap.ui.xmlfragment("idMenuDlg", "com.levi.businesshealthcheck.view.fragments.Options", this);
+                        this.getView().addDependent(this._oOptionDlg);
+                    }
+                    this._oOptionDlg.openBy(oEvt.getSource());
                 }
-                this._oOptionDlg.openBy(oEvt.getSource());
+
+            },
+            onAfterOptionOpen: function (oEvt) {
+                this.getOwnerComponent().getModel("ViewModel").setProperty("/OptionIcon", "sap-icon://decline");
+            },
+            onAfterOptionClose: function (oEvt) {
+                this.getOwnerComponent().getModel("ViewModel").setProperty("/OptionIcon", "sap-icon://drill-up");
+            },
+            onSelectOption: function (oEvt) {
+                var sTitle = oEvt.getSource().getTitle();
+                this._oOptionDlg.close();
+                this.oBusyDailog.open();
+                jQuery.sap.delayedCall(3000, this, function() {
+                    this.getView().byId("idOption").setText("Showing: " + sTitle);
+                    this.oBusyDailog.close();
+                });
             }
         });
     });

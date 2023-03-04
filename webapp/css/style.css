@@ -139,61 +139,11 @@
 }
 
 /* CSS for Menu Dialog */
-.menuClass .sapUiMnuItm {
-    display: block;
-    height: 1.8rem;
-    width: 15rem;
-    line-height: 2rem;
-    white-space: nowrap;
-    position: relative;
-    padding: 0.5rem;
-    border-bottom: 1px solid #a8b3bd !important;
-    padding: 18px;
-}
-
-.menuClass .sapUiMnuItm.sapUiMnuItmHov {
-    color: #04458f;
-    outline: none !important;
-}
-
-.menuClass .sapUiMnuLst {
-    padding: 0;
-    margin: 0;
-    display: block;
-    cursor: default;
-    color: #000000;
-    font-size: 0.875rem;
-    font-family: "72", "72full", Arial, Helvetica, sans-serif;
-}
-
-.menuClass .sapUiMnuItmTxt {
-    margin-left: 0.5rem;
-    font-size: 1rem;
-    text-shadow: none;
-}
-
-.menuClass .sapUiMnuItmIco>.sapUiIcon {
-    font-size: 1.1rem !important;
-    color: #000000 !important;
-}
-
-.menuItemClass .sapUiMnuItmFirst {
-    background: #000000 !important;
-    color: #ffffff !important;
-    font-style: normal !important;
-    margin-left: -2rem !important;
-    width: 125% !important;
-}
-
-.menuDlgCls {
-    border-radius: 0 !important;
-}
-
 .vbox1RightMoveAnimation {
     top: 0px !important;
     bottom: 0px !important;
     animation-name: moveVbox1ToRight;
-    animation-duration: 0.5s;
+    animation-duration: 0.3s;
     animation-fill-mode: forwards;
 }
 
@@ -218,8 +168,15 @@
     border-radius: 30px !important;
 }
 
-.vboxOrders {
+.vboxOrdersUp {
     background: #b7ddd2;
+    border-radius: 12px;
+    padding: 10px;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+.vboxOrdersDown {
+    background: #f2aaaa;
     border-radius: 12px;
     padding: 10px;
     margin-left: 10px !important;
@@ -227,7 +184,7 @@
 }
 
 .ordersTxtCls {
-    color: #556b81 !important;
+    color: #1d2d3e !important;
     font-size: 15px;
 }
 
@@ -276,8 +233,7 @@
     padding: 20px;
 }
 
-.optionListTitle .sapMSLITitle,
-.sapMSLITitleOnly {
+.optionListTitle .sapMSLITitleOnly {
     color: #f5f6f7 !important;
 }
 
@@ -326,7 +282,7 @@
     padding-bottom: 9px;
     padding-left: 6px;
     padding-right: 6px;
-    border: 1.5px solid #a8b3bd;
+    border: 1px solid #1d2d3e;
 }
 .fixedTxtCls {
     background: #000000 !important;
@@ -336,5 +292,57 @@
     padding-top: 12px;
     padding-bottom: 12px;
     border: 1px solid #556b81;
+}
+.selectCls {
+    border-radius: 10px !important;
+    background: #fff !important;
+    border: 1px solid #a8b3bd !important;
+}
+.selectLblCls .sapMSelectListItemText {
+    color: #1d2d3e !important;
+}
+.toggleBtnPressedCls .sapMToggleBtnPressed.sapMBtnInner.sapMBtnText{
+    background-color: #ab9dff !important;
+    border-color: #ab9dff !important;
+    color: #1d2d3e !important;
+    text-shadow: none !important;
+}
+.toggleBtnCls .sapMBtnInner.sapMBtnText {
+    background: #ffffff !important;
+    border: 1px solid #a8b3bd !important;
+    color: #1d2d3e !important;
+}
+.issueTxtCls {
+    font-size: 16px;
+}
+.menuPopover {
+    background: #ffffff !important;
+    border-radius: 0 !important
+}
+.menuList {
+    padding-left: 15px !important;
+    padding-right: 25px !important;
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+    border-bottom: 1px solid #556b82 !important;
+}
+.menuListTitle .sapMSLITitleOnly {
+    color: #000000 !important;
+    font-size: 17px !important;
+    text-shadow: none !important;
+}
+.menuListIcon .sapMSLIImgIcon {
+    color: #000000 !important;
+}
+.menuTitleHBox {
+    background: #000000;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 10px;
+}
+.menuTitleTxtCls {
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 100;
 }
 /* CSS for Daily Sales Page */

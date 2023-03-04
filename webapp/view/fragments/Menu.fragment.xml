@@ -1,10 +1,17 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout">
-	<u:Menu itemSelect="handleMenuItemPress" class="menuDlgCls menuClass vbox1RightMoveAnimation menuItemClass">
-		<u:MenuItem text="Vikas Kumar"/>
-		<u:MenuItem text="Home" icon="sap-icon://home" select="onHomePress"/>
-		<u:MenuItem text="Daily Sales" icon="sap-icon://sales-order-item" select="onDailySalesPress"/>
-		<u:MenuItem text="Daily Orders" icon="sap-icon://customer-order-entry" select="onDailyOrdersPress"/>
-		<u:MenuItem text="Market Summary" icon="sap-icon://marketing-campaign"/>
-		<u:MenuItem text="Newsletter" icon="sap-icon://newspaper"/>
-	</u:Menu>
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Popover showHeader="false" class="vbox1RightMoveAnimation menuPopover" contentWidth="65%">
+        <content>
+            <HBox justifyContent="Start" alignContent="Center" alignItems="Center" class="menuTitleHBox">
+                <Avatar initials="VK" displaySize="S" displayShape="Circle" showBorder="true" />
+				<Text text="Vikas Kumar" class="menuTitleTxtCls sapUiTinyMarginBegin"/>
+            </HBox>
+            <List backgroundDesign="Transparent" itemPress="onSelectMenuItem">
+                <StandardListItem title="Home" icon="sap-icon://home" type="Active" class="menuList menuListTitle menuListIcon" custom:key="Home" />
+                <StandardListItem title="Daily Sales" icon="sap-icon://sales-order-item" type="Active" class="menuList menuListTitle menuListIcon" custom:key="Sales" />
+                <StandardListItem title="Daily Orders" icon="sap-icon://customer-order-entry" type="Active" class="menuList menuListTitle menuListIcon" custom:key="Orders" />
+                <StandardListItem title="Market Summary" icon="sap-icon://marketing-campaign" type="Active" class="menuList menuListTitle menuListIcon" custom:key="MarketSummary" />
+                <StandardListItem title="Newsletter" icon="sap-icon://newspaper" type="Active" class="menuList menuListTitle menuListIcon" custom:key="Newsletter" />
+            </List>
+        </content>
+    </Popover>
 </core:FragmentDefinition>

@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog showHeader="false" class="sapUiPopupWithPadding">
+        <content>
+            <VBox justifyContent="Center" alignItems="Center" alignContent="Center">
+                <Text text="{ViewModel>/SomethingWentWrong}" class="issueTxtCls sapUiTinyMarginTopBottom"/>
+                <Text text="Retry" class="issueTxtCls sapUiTinyMarginBottom"/>
+                <core:Icon src="sap-icon://refresh" size="1.8rem" color="#215490" press="onRefreshChartData"/>
+            </VBox>
+        </content>
+    </Dialog>
+</core:FragmentDefinition>

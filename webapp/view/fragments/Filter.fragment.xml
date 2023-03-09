@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+    <Dialog showHeader="false" stretch="{device>/system/phone}" afterOpen="onAfterFilterOpen">
+        <content>
+            <f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                <f:content>
+                    <Label text="Business Metrics (KPI)" design="Bold"/>
+                    <Select id="idSelectCriteria1" change="onOption1Change">
+                        <items>
+                            <core:Item text="By Markets" key="Market" />
+                            <core:Item text="By Channels" key="Channel" />
+                        </items>
+                    </Select>
+                    <Label text="Region/Distribution Channel" design="Bold"/>
+                    <ComboBox id="idSelectCriteria2" items="{ApplicationModel>/Options}">
+                        <items>
+                            <core:Item text="{ApplicationModel>Name}" key="{ApplicationModel>Key}" />
+                        </items>
+                    </ComboBox>
+                    <Label text="Sub-Category" design="Bold"/>
+                    <ComboBox id="idSelectCriteria3">
+                        <items>
+                            <core:Item text="By Region" key="Region" />
+                            <core:Item text="By Category" key="Category" />
+                        </items>
+                    </ComboBox>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <beginButton>
+            <Button text="Apply" press="onApplyFilter" />
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" press="onFilterCancel" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

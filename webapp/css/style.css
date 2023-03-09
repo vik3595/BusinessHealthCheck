@@ -15,14 +15,14 @@
 }
 
 .labelClss {
-    font-size: 15px !important;
+    font-size: 18px !important;
     color: #000000 !important;
     text-shadow: none !important;
     font-weight: bold !important;
 }
 
 .leftMenuIconClass {
-    background: #000000 !important;
+    /* background: #000000 !important; */
     padding: 9px !important;
     border-radius: 30px !important;
 }
@@ -31,6 +31,9 @@
     background: #968ae0 !important;
     padding: 9px !important;
     border-radius: 30px !important;
+}
+.backIconCls {
+    border-radius: 10px !important;
 }
 
 .linkCls {
@@ -235,6 +238,7 @@
 
 .optionListTitle .sapMSLITitleOnly {
     color: #f5f6f7 !important;
+    text-align: center !important;
 }
 
 /* .optionsPopover {
@@ -345,4 +349,16 @@
     color: #ffffff;
     font-weight: 100;
 }
-/* CSS for Daily Sales Page */
+.breadcrumbLinks {
+    color: #065bbe;
+    font-size: 14px;
+    font-weight: bold;
+}
+.breadcrumbSep .sapMBreadcrumbsSeparator {
+    color: #000000 !important;
+}
+.breadcrumbCurrLoc .sapMBreadcrumbsCurrentLocation {
+    font-weight: bold;
+    color: #065bbe;
+    font-size: 14px;
+}

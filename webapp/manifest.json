@@ -73,7 +73,7 @@
                     "bundleName": "com.levi.businesshealthcheck.i18n.i18n"
                 }
             },
-            "DemoModel": {
+            "ApplicationModel": {
                 "type": "sap.ui.model.json.JSONModel",
                 "uri": "model/DemoData.json"
             }

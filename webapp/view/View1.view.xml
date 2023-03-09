@@ -3,11 +3,11 @@
         <Page id="idHomePage" class="pageBg toolbarCls fltFtrClss" floatingFooter="true">
             <customHeader>
                 <OverflowToolbar height="4rem" width="100%" style="Clear">
-                    <core:Icon src="sap-icon://menu2" color="#ffffff" class="leftMenuIconClass" press="onMenuPress" />
+                    <core:Icon src="sap-icon://menu2" color="#ffffff" backgroundColor="#000000" class="leftMenuIconClass" press="onMenuPress" />
                     <ToolbarSpacer />
                     <Label text="Business Health Check" class="labelClss" />
                     <ToolbarSpacer />
-                    <core:Icon src="sap-icon://overflow" color="#000000" class="rightMenuIconClass" />
+                    <core:Icon src="sap-icon://action-settings" color="#ffffff" backgroundColor="#000000" class="leftMenuIconClass" press="onFilterIconPress" />
                 </OverflowToolbar>
             </customHeader>
             <content>
@@ -62,18 +62,22 @@
                 </OverflowToolbar>
             </footer>
         </Page>
-        <Page id="idDailySales" class="pageBg toolbarDailyOrdersCls fltFtrClss" floatingFooter="true">
+        <Page id="idDailySales" class="pageBg toolbarDailyOrdersCls">
             <customHeader>
                 <OverflowToolbar height="4rem" width="100%" style="Clear">
-                    <core:Icon src="sap-icon://menu2" color="#ffffff" class="leftMenuIconClass" press="onMenuPress" />
+                    <core:Icon src="sap-icon://menu2" color="#ffffff" backgroundColor="#000000" class="leftMenuIconClass" press="onMenuPress" />
                     <ToolbarSpacer />
                     <Label text="Daily Sales" class="labelClss" />
                     <ToolbarSpacer />
-                    <core:Icon src="sap-icon://overflow" color="#000000" class="rightMenuIconDailyOrdersClass" />
+                    <core:Icon src="sap-icon://action-settings" color="#ffffff" backgroundColor="#000000" class="leftMenuIconClass" press="onFilterIconPress" />
+                    <!-- <core:Icon src="sap-icon://overflow" color="#000000" class="rightMenuIconDailyOrdersClass" /> -->
                 </OverflowToolbar>
             </customHeader>
             <content>
-                <VBox id="idSalesTrendVBox" class="sapUiMediumMarginTop">
+                <Breadcrumbs currentLocationText="{ApplicationModel>/DailySalesBreadCrumbs/CurrentLocation}" links="{ApplicationModel>/DailySalesBreadCrumbs/Links}" separatorStyle="GreaterThan" class="breadcrumbSep breadcrumbCurrLoc sapUiSmallMarginBegin sapUiMediumMarginTop">
+                    <Link text="{ApplicationModel>Name}" class="breadcrumbLinks"/>
+                </Breadcrumbs>
+                <VBox id="idSalesTrendVBox" class="sapUiSmallMarginTop vboxOrdersUp">
                     <Text text="Orders" class="ordersTxtCls" />
                     <HBox justifyContent="SpaceBetween" alignItems="End" alignContent="End" width="100%" class="sapUiTinyMarginBottom">
                         <ObjectNumber class="objectNumberTxt objectNumberUnit sapUiTinyMarginTop" number="{path: 'ViewModel>/VolumeOrders', formatter: '.formatter.getVolumeWithoutUnit'}" unit="M" />
@@ -86,28 +90,19 @@
                 <VBox class="dailyOrderChartVboxCls">
                     <HBox justifyContent="SpaceBetween" alignContent="Center" alignItems="Center" width="100%" class="sapUiTinyMarginTop sapUiSmallMarginBottom">
                         <HBox justifyContent="Start" alignContent="Center" alignItems="Center" width="50%" class="sapUiTinyMarginBegin">
-                            <ToggleButton text="Surface" pressed="true" enabled="true" class="sapUiTinyMarginEnd toggleBtnCls toggleBtnPressedCls" />
-                            <ToggleButton text="Depth" enabled="true" class="toggleBtnCls toggleBtnPressedCls" />
+                            <VBox justifyContent="Start" alignContent="Start" alignItems="Start" class="sapUiMediumMarginEnd">
+                                <Label text="High" class="normalTxtCls"/>
+                                <ObjectNumber number="{ViewModel>/HighOrders}" state="Success"/>
+                            </VBox>
+                            <VBox justifyContent="Start" alignContent="Start" alignItems="Start">
+                                <Label text="Low" class="normalTxtCls"/>
+                                <ObjectNumber number="{ViewModel>/LowOrders}" state="Error"/>
+                            </VBox>
                         </HBox>
-                        <HBox justifyContent="End" alignContent="Center" alignItems="Center" width="50%" class="sapUiTinyMarginEnd">
-                            <Label text="Range" showColon="true" class="normalTxtCls sapUiTinyMarginEnd" />
-                            <Select selectedKey="Mar" class="selectCls selectLblCls selectArrCls" width="4.8rem">
-                                <items>
-                                    <core:Item key="Jan" text="Jan" />
-                                    <core:Item key="Feb" text="Feb" />
-                                    <core:Item key="Mar" text="Mar" />
-                                    <core:Item key="Apr" text="Apr" />
-                                    <core:Item key="May" text="May" />
-                                    <core:Item key="Jun" text="Jun" />
-                                    <core:Item key="Jul" text="Jul" />
-                                    <core:Item key="Aug" text="Aug" />
-                                    <core:Item key="Sep" text="Sep" />
-                                    <core:Item key="Oct" text="Oct" />
-                                    <core:Item key="Nov" text="Nov" />
-                                    <core:Item key="Dec" text="Dec" />
-                                </items>
-                            </Select>
-                        </HBox>
+                        <VBox justifyContent="Start" alignContent="End" alignItems="End" class="sapUiSmallMarginEnd">
+                            <Label text="Range" showColon="true" class="normalTxtCls" />
+                            <Text text="Last 5 Days" class="boldTxtClss" />
+                        </VBox>
                     </HBox>
                     <core:HTML content="&lt;canvas id=&quot;DailySalesBarChart&quot;&gt;&lt;/canvas&gt;" />
                 </VBox>
@@ -148,26 +143,23 @@
                     </HBox>
                 </HBox>
             </content>
-            <footer>
-                <OverflowToolbar design="Transparent" height="3.5rem" width="100%">
-                    <Text id="idOptionSales" text="Showing: By Markets" textAlign="Center" class="fixedTxtCls" width="80%" />
-                    <ToolbarSpacer />
-                    <core:Icon src="{ViewModel>/OptionIcon}" color="#000" backgroundColor="#e0e0e0" size="1.4rem" class="bottomRightOptions" press="onOptionMenuPress" />
-                </OverflowToolbar>
-            </footer>
         </Page>
-        <Page id="idDailyOrders" class="pageBg toolbarDailyOrdersCls fltFtrClss" floatingFooter="true">
+        <Page id="idDailyOrders" class="pageBg toolbarDailyOrdersCls">
             <customHeader>
                 <OverflowToolbar height="4rem" width="100%" style="Clear">
-                    <core:Icon src="sap-icon://menu2" color="#ffffff" class="leftMenuIconClass" press="onMenuPress" />
+                    <core:Icon src="sap-icon://menu2" color="#ffffff" backgroundColor="#000000" class="leftMenuIconClass" press="onMenuPress" />
                     <ToolbarSpacer />
                     <Label text="Daily Orders" class="labelClss" />
                     <ToolbarSpacer />
-                    <core:Icon src="sap-icon://overflow" color="#000000" class="rightMenuIconDailyOrdersClass" />
+                    <core:Icon src="sap-icon://action-settings" color="#ffffff" backgroundColor="#000000" class="leftMenuIconClass" press="onFilterIconPress" />
+                    <!-- <core:Icon src="sap-icon://overflow" color="#000000" class="rightMenuIconDailyOrdersClass" /> -->
                 </OverflowToolbar>
             </customHeader>
             <content>
-                <VBox id="idOrderTrendVBox" class="vboxOrders sapUiMediumMarginTop">
+                <Breadcrumbs currentLocationText="By Markets" separatorStyle="GreaterThan" class="breadcrumbSep breadcrumbCurrLoc sapUiSmallMarginBegin sapUiMediumMarginTop">
+                    <Link text="Daily Orders" class="breadcrumbLinks"/>
+                </Breadcrumbs>
+                <VBox id="idOrderTrendVBox" class="sapUiMediumMarginTop vboxOrdersUp">
                     <Text text="Orders" class="ordersTxtCls" />
                     <HBox justifyContent="SpaceBetween" alignItems="End" alignContent="End" width="100%" class="sapUiTinyMarginBottom">
                         <ObjectNumber class="objectNumberTxt objectNumberUnit sapUiTinyMarginTop" number="{path: 'ViewModel>/VolumeOrders', formatter: '.formatter.getVolumeWithoutUnit'}" unit="M" />
@@ -242,13 +234,6 @@
                     </HBox>
                 </HBox>
             </content>
-            <footer>
-                <OverflowToolbar design="Transparent" height="3.5rem" width="100%">
-                    <Text id="idOptionOrders" text="Showing: By Markets" textAlign="Center" class="fixedTxtCls" width="80%" />
-                    <ToolbarSpacer />
-                    <core:Icon src="{ViewModel>/OptionIcon}" color="#000000" backgroundColor="#ffffff" size="1.4rem" class="bottomRightOptions" press="onOptionMenuPress" />
-                </OverflowToolbar>
-            </footer>
         </Page>
     </NavContainer>
 </mvc:View>

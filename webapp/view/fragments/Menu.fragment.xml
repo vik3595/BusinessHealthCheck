@@ -2,8 +2,8 @@
     <Popover showHeader="false" class="vbox1RightMoveAnimation menuPopover" contentWidth="65%">
         <content>
             <HBox justifyContent="Start" alignContent="Center" alignItems="Center" class="menuTitleHBox">
-                <Avatar initials="VK" displaySize="S" displayShape="Circle" showBorder="true" />
-				<Text text="Vikas Kumar" class="menuTitleTxtCls sapUiTinyMarginBegin"/>
+                <Avatar initials="JD" displaySize="XS" displayShape="Circle" showBorder="true" />
+				<Text text="John Doe" class="menuTitleTxtCls sapUiTinyMarginBegin"/>
             </HBox>
             <List backgroundDesign="Transparent" itemPress="onSelectMenuItem">
                 <StandardListItem title="Home" icon="sap-icon://home" type="Active" class="menuList menuListTitle menuListIcon" custom:key="Home" />

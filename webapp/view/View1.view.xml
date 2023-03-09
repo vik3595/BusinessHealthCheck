@@ -1,4 +1,4 @@
-<mvc:View controllerName="com.levi.businesshealthcheck.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:core="sap.ui.core" xmlns="sap.m">
+<mvc:View controllerName="com.levi.businesshealthcheck.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     <NavContainer id="idNavContainer" visible="{device>/system/phone}">
         <Page id="idHomePage" class="pageBg toolbarCls fltFtrClss" floatingFooter="true">
             <customHeader>
@@ -7,7 +7,7 @@
                     <ToolbarSpacer />
                     <Label text="Business Health Check" class="labelClss" />
                     <ToolbarSpacer />
-                    <core:Icon src="sap-icon://action-settings" color="#ffffff" backgroundColor="#000000" class="leftMenuIconClass" press="onFilterIconPress" />
+                    <!-- <core:Icon src="sap-icon://action-settings" color="#ffffff" backgroundColor="#000000" class="leftMenuIconClass" press="onFilterIconPress" /> -->
                 </OverflowToolbar>
             </customHeader>
             <content>
@@ -69,13 +69,13 @@
                     <ToolbarSpacer />
                     <Label text="Daily Sales" class="labelClss" />
                     <ToolbarSpacer />
-                    <core:Icon src="sap-icon://action-settings" color="#ffffff" backgroundColor="#000000" class="leftMenuIconClass" press="onFilterIconPress" />
+                    <core:Icon src="sap-icon://action-settings" color="#ffffff" backgroundColor="#000000" class="leftMenuIconClass" press="onFilterIconPress" custom:Popup="DailySales" />
                     <!-- <core:Icon src="sap-icon://overflow" color="#000000" class="rightMenuIconDailyOrdersClass" /> -->
                 </OverflowToolbar>
             </customHeader>
             <content>
                 <Breadcrumbs currentLocationText="{ApplicationModel>/DailySalesBreadCrumbs/CurrentLocation}" links="{ApplicationModel>/DailySalesBreadCrumbs/Links}" separatorStyle="GreaterThan" class="breadcrumbSep breadcrumbCurrLoc sapUiSmallMarginBegin sapUiMediumMarginTop">
-                    <Link text="{ApplicationModel>Name}" class="breadcrumbLinks"/>
+                    <Link text="{ApplicationModel>Name}" class="breadcrumbLinks" />
                 </Breadcrumbs>
                 <VBox id="idSalesTrendVBox" class="sapUiSmallMarginTop vboxOrdersUp">
                     <Text text="Orders" class="ordersTxtCls" />
@@ -87,20 +87,36 @@
                         </HBox>
                     </HBox>
                 </VBox>
+                <VBox class="highLowDailyOrdersCls">
+                    <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center">
+                        <HBox alignContent="Center" justifyContent="Start" alignItems="Center" width="50%" renderType="Bare">
+                            <core:Icon src="sap-icon://arrow-top" color="green" size="14px" class="sapUiTinyMarginEnd" />
+                            <Text text="Daily Sales (LSA):" class="lightShadedTxt" />
+                        </HBox>
+                        <Text text="45M" class="boldTxtClss" />
+                    </HBox>
+                    <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMarginTop">
+                        <HBox alignContent="Center" justifyContent="Start" alignItems="Center" width="50%" renderType="Bare">
+                            <core:Icon src="sap-icon://arrow-bottom" color="red" size="14px" class="sapUiTinyMarginEnd" />
+                            <Text text="Daily Sales (LSE):" class="lightShadedTxt" />
+                        </HBox>
+                        <Text text="25M" class="boldTxtClss" />
+                    </HBox>
+                </VBox>
                 <VBox class="dailyOrderChartVboxCls">
                     <HBox justifyContent="SpaceBetween" alignContent="Center" alignItems="Center" width="100%" class="sapUiTinyMarginTop sapUiSmallMarginBottom">
                         <HBox justifyContent="Start" alignContent="Center" alignItems="Center" width="50%" class="sapUiTinyMarginBegin">
                             <VBox justifyContent="Start" alignContent="Start" alignItems="Start" class="sapUiMediumMarginEnd">
-                                <Label text="High" class="normalTxtCls"/>
-                                <ObjectNumber number="{ViewModel>/HighOrders}" state="Success"/>
+                                <Text text="High" class="lightShadedTxt" />
+                                <ObjectNumber number="{ViewModel>/HighOrders}" state="Success" />
                             </VBox>
                             <VBox justifyContent="Start" alignContent="Start" alignItems="Start">
-                                <Label text="Low" class="normalTxtCls"/>
-                                <ObjectNumber number="{ViewModel>/LowOrders}" state="Error"/>
+                                <Text text="Low" class="lightShadedTxt"/>
+                                <ObjectNumber number="{ViewModel>/LowOrders}" state="Error" />
                             </VBox>
                         </HBox>
                         <VBox justifyContent="Start" alignContent="End" alignItems="End" class="sapUiSmallMarginEnd">
-                            <Label text="Range" showColon="true" class="normalTxtCls" />
+                            <Text text="Range:" class="lightShadedTxt"/>
                             <Text text="Last 5 Days" class="boldTxtClss" />
                         </VBox>
                     </HBox>
@@ -109,7 +125,7 @@
                 <VBox class="dailyOrderChartVboxCls">
                     <core:HTML content="&lt;canvas id=&quot;DailySalesLineChart&quot;&gt;&lt;/canvas&gt;" />
                 </VBox>
-                <HBox width="100%">
+                <!-- <HBox width="100%">
                     <VBox class="vboxOpenClose" width="50%">
                         <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center">
                             <Text text="Open" class="lightShadedTxt" />
@@ -141,7 +157,7 @@
                         <Text text="Market cap" class="lightShadedTxt" />
                         <Text text="{ViewModel>/VolumeOrders}" class="boldTxtClss" />
                     </HBox>
-                </HBox>
+                </HBox> -->
             </content>
         </Page>
         <Page id="idDailyOrders" class="pageBg toolbarDailyOrdersCls">
@@ -151,15 +167,15 @@
                     <ToolbarSpacer />
                     <Label text="Daily Orders" class="labelClss" />
                     <ToolbarSpacer />
-                    <core:Icon src="sap-icon://action-settings" color="#ffffff" backgroundColor="#000000" class="leftMenuIconClass" press="onFilterIconPress" />
+                    <core:Icon src="sap-icon://action-settings" color="#ffffff" backgroundColor="#000000" class="leftMenuIconClass" press="onFilterIconPress" custom:Popup="DailyOrders" />
                     <!-- <core:Icon src="sap-icon://overflow" color="#000000" class="rightMenuIconDailyOrdersClass" /> -->
                 </OverflowToolbar>
             </customHeader>
             <content>
-                <Breadcrumbs currentLocationText="By Markets" separatorStyle="GreaterThan" class="breadcrumbSep breadcrumbCurrLoc sapUiSmallMarginBegin sapUiMediumMarginTop">
-                    <Link text="Daily Orders" class="breadcrumbLinks"/>
+                <Breadcrumbs currentLocationText="{ApplicationModel>/DailyOrdersBreadCrumbs/CurrentLocation}" links="{ApplicationModel>/DailyOrdersBreadCrumbs/Links}" separatorStyle="GreaterThan" class="breadcrumbSep breadcrumbCurrLoc sapUiSmallMarginBegin sapUiMediumMarginTop">
+                    <Link text="{ApplicationModel>Name}" class="breadcrumbLinks" />
                 </Breadcrumbs>
-                <VBox id="idOrderTrendVBox" class="sapUiMediumMarginTop vboxOrdersUp">
+                <VBox id="idOrderTrendVBox" class="sapUiSmallMarginTop vboxOrdersUp">
                     <Text text="Orders" class="ordersTxtCls" />
                     <HBox justifyContent="SpaceBetween" alignItems="End" alignContent="End" width="100%" class="sapUiTinyMarginBottom">
                         <ObjectNumber class="objectNumberTxt objectNumberUnit sapUiTinyMarginTop" number="{path: 'ViewModel>/VolumeOrders', formatter: '.formatter.getVolumeWithoutUnit'}" unit="M" />
@@ -169,38 +185,45 @@
                         </HBox>
                     </HBox>
                 </VBox>
+                <VBox class="highLowDailyOrdersCls">
+                    <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center">
+                        <HBox alignContent="Center" justifyContent="Start" alignItems="Center" width="50%" renderType="Bare">
+                            <core:Icon src="sap-icon://arrow-top" color="green" size="14px" class="sapUiTinyMarginEnd" />
+                            <Text text="Daily Sales (LSA):" class="lightShadedTxt" />
+                        </HBox>
+                        <Text text="45M" class="boldTxtClss" />
+                    </HBox>
+                    <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMarginTop">
+                        <HBox alignContent="Center" justifyContent="Start" alignItems="Center" width="50%" renderType="Bare">
+                            <core:Icon src="sap-icon://arrow-bottom" color="red" size="14px" class="sapUiTinyMarginEnd" />
+                            <Text text="Daily Sales (LSE):" class="lightShadedTxt" />
+                        </HBox>
+                        <Text text="25M" class="boldTxtClss" />
+                    </HBox>
+                </VBox>
                 <VBox class="dailyOrderChartVboxCls">
                     <HBox justifyContent="SpaceBetween" alignContent="Center" alignItems="Center" width="100%" class="sapUiTinyMarginTop sapUiSmallMarginBottom">
                         <HBox justifyContent="Start" alignContent="Center" alignItems="Center" width="50%" class="sapUiTinyMarginBegin">
-                            <ToggleButton text="Surface" pressed="true" enabled="true" class="sapUiTinyMarginEnd toggleBtnCls toggleBtnPressedCls" />
-                            <ToggleButton text="Depth" enabled="true" class="toggleBtnCls toggleBtnPressedCls" />
+                            <VBox justifyContent="Start" alignContent="Start" alignItems="Start" class="sapUiMediumMarginEnd">
+                                <Text text="High" class="lightShadedTxt"/>
+                                <ObjectNumber number="{ViewModel>/HighOrders}" state="Success" />
+                            </VBox>
+                            <VBox justifyContent="Start" alignContent="Start" alignItems="Start">
+                                <Text text="Low" class="lightShadedTxt"/>
+                                <ObjectNumber number="{ViewModel>/LowOrders}" state="Error" />
+                            </VBox>
                         </HBox>
-                        <HBox justifyContent="End" alignContent="Center" alignItems="Center" width="50%" class="sapUiTinyMarginEnd">
-                            <Label text="Range" showColon="true" class="normalTxtCls sapUiTinyMarginEnd" />
-                            <Select selectedKey="Mar" class="selectCls selectLblCls selectArrCls" width="4.8rem">
-                                <items>
-                                    <core:Item key="Jan" text="Jan" />
-                                    <core:Item key="Feb" text="Feb" />
-                                    <core:Item key="Mar" text="Mar" />
-                                    <core:Item key="Apr" text="Apr" />
-                                    <core:Item key="May" text="May" />
-                                    <core:Item key="Jun" text="Jun" />
-                                    <core:Item key="Jul" text="Jul" />
-                                    <core:Item key="Aug" text="Aug" />
-                                    <core:Item key="Sep" text="Sep" />
-                                    <core:Item key="Oct" text="Oct" />
-                                    <core:Item key="Nov" text="Nov" />
-                                    <core:Item key="Dec" text="Dec" />
-                                </items>
-                            </Select>
-                        </HBox>
+                        <VBox justifyContent="Start" alignContent="End" alignItems="End" class="sapUiSmallMarginEnd">
+                            <Text text="Range:" class="lightShadedTxt" />
+                            <Text text="Last 5 Days" class="boldTxtClss" />
+                        </VBox>
                     </HBox>
                     <core:HTML content="&lt;canvas id=&quot;DailyOrdersDoughnutChart&quot;&gt;&lt;/canvas&gt;" />
                 </VBox>
                 <VBox class="dailyOrderChartVboxCls">
                     <core:HTML content="&lt;canvas id=&quot;DailyOrdersLineChart&quot;&gt;&lt;/canvas&gt;" />
                 </VBox>
-                <HBox width="100%">
+                <!-- <HBox width="100%">
                     <VBox class="vboxOpenClose" width="50%">
                         <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center">
                             <Text text="Open" class="lightShadedTxt" />
@@ -232,7 +255,7 @@
                         <Text text="Market cap" class="lightShadedTxt" />
                         <Text text="{ViewModel>/VolumeOrders}" class="boldTxtClss" />
                     </HBox>
-                </HBox>
+                </HBox> -->
             </content>
         </Page>
     </NavContainer>

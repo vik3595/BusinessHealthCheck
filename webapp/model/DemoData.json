@@ -33,14 +33,10 @@
     ],
     "DailySalesBreadCrumbs": {
         "CurrentLocation": "By Market",
-        "Links": [{
-            "Name": "Daily Sales"
-        }]
+        "Links": []
     },
     "DailyOrdersBreadCrumbs": {
         "CurrentLocation": "By Market",
-        "Links": [{
-            "Name": "Daily Orders"
-        }]
+        "Links": []
     }
 }

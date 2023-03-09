@@ -17,12 +17,12 @@
                         </items>
                     </ComboBox>
                     <Label text="Sub-Category" design="Bold"/>
-                    <ComboBox id="idSelectCriteria3">
+                    <Select id="idSelectCriteria3">
                         <items>
                             <core:Item text="By Region" key="Region" />
-                            <core:Item text="By Category" key="Category" />
+                            <!-- <core:Item text="By Category" key="Category" /> -->
                         </items>
-                    </ComboBox>
+                    </Select>
                 </f:content>
             </f:SimpleForm>
         </content>

@@ -181,9 +181,9 @@ sap.ui.define([
                             label: "By Channel",
                             data: [45, 60, 30],
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.8)',
-                                'rgba(54, 162, 235, 0.8)',
-                                'rgba(255, 206, 86, 0.8)'
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)'
                             ],
                             borderColor: [
                                 '#e5e5e5'
@@ -204,7 +204,7 @@ sap.ui.define([
             onRenderDailyOrdersChart2: function () {
                 var ctx = document.getElementById('DailyOrdersLineChart').getContext('2d');
                 Chart.defaults.global.defaultFontColor = '#000000';
-                this.dailyOrdersChart1 = new Chart(ctx, {
+                this.dailyOrdersChart2 = new Chart(ctx, {
                     type: 'line',
                     data: {
                         datasets: [{
@@ -213,10 +213,10 @@ sap.ui.define([
                             type: 'line',
                             backgroundColor: [
                                 'transparent'
-                                // 'rgba(255, 99, 132, 0.8)'
+                                // 'rgba(255, 99, 132, 1)'
                             ],
                             borderColor: [
-                                'rgba(255, 99, 132, 0.8)'
+                                'rgba(255, 99, 132, 1)'
                             ],
                             borderWidth: 1
                         }, {
@@ -225,10 +225,10 @@ sap.ui.define([
                             type: 'line',
                             backgroundColor: [
                                 'transparent'
-                                // 'rgba(54, 162, 235, 0.8)'
+                                // 'rgba(54, 162, 235, 1)'
                             ],
                             borderColor: [
-                                'rgba(54, 162, 235, 0.8)'
+                                'rgba(54, 162, 235, 1)'
                             ],
                             borderWidth: 1
                         }, {
@@ -237,10 +237,10 @@ sap.ui.define([
                             type: 'line',
                             backgroundColor: [
                                 'transparent'
-                                // 'rgba(255, 206, 86, 0.8)'
+                                // 'rgba(255, 206, 86, 1)'
                             ],
                             borderColor: [
-                                'rgba(255, 206, 86, 0.8)'
+                                'rgba(255, 206, 86, 1)'
                             ],
                             borderWidth: 1
                         }
@@ -268,9 +268,9 @@ sap.ui.define([
                             label: "By Market",
                             data: [45, 25, 30],
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.8)',
-                                'rgba(54, 162, 235, 0.8)',
-                                'rgba(255, 206, 86, 0.8)'
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)'
                             ],
                             borderColor: [
                                 '#e5e5e5'
@@ -308,7 +308,7 @@ sap.ui.define([
                                 'transparent'
                             ],
                             borderColor: [
-                                'rgba(255, 99, 132, 0.8)'
+                                'rgba(255, 99, 132, 1)'
                             ],
                             borderWidth: 1
                         }, {
@@ -319,7 +319,7 @@ sap.ui.define([
                                 'transparent'
                             ],
                             borderColor: [
-                                'rgba(54, 162, 235, 0.8)'
+                                'rgba(54, 162, 235, 1)'
                             ],
                             borderWidth: 1
                         }, {
@@ -330,7 +330,7 @@ sap.ui.define([
                                 'transparent'
                             ],
                             borderColor: [
-                                'rgba(255, 206, 86, 0.8)'
+                                'rgba(255, 206, 86, 1)'
                             ],
                             borderWidth: 1
                         }
@@ -368,6 +368,7 @@ sap.ui.define([
                     this._oFilterDlg = sap.ui.xmlfragment("idFilterDlg", "com.levi.businesshealthcheck.view.fragments.Filter", this);
                     this.getView().addDependent(this._oFilterDlg);
                 }
+                this._oFilterDlg.data("Popup", oEvt.getSource().getCustomData()[0].getValue());
                 this._oFilterDlg.open();
 
             },
@@ -384,28 +385,46 @@ sap.ui.define([
             },
             onApplyFilter: function (oEvt) {
                 var sSelectCriteria1 = sap.ui.core.Fragment.byId("idFilterDlg", "idSelectCriteria1").getSelectedItem().getText();
-                if (sap.ui.core.Fragment.byId("idFilterDlg", "idSelectCriteria2").getSelectedKey() === '') {
-                    this._refreshDailySalesChart("ByMarketOnly");
-                    this.getOwnerComponent().getModel("ApplicationModel").setProperty("/DailySalesBreadCrumbs", {
-                        "CurrentLocation": sSelectCriteria1,
-                        "Links": [{
-                            "Name": "Daily Sales"
-                        }]
-                    });
+                if (oEvt.getSource().getParent().getCustomData()[0].getValue() === "DailySales") {
+                    if (sap.ui.core.Fragment.byId("idFilterDlg", "idSelectCriteria2").getSelectedKey() === '') {
+                        this._refreshDailySalesChart("ByMarketOnly");
+                        this.getOwnerComponent().getModel("ApplicationModel").setProperty("/DailySalesBreadCrumbs", {
+                            "CurrentLocation": sSelectCriteria1,
+                            "Links": []
+                        });
+                    } else {
+                        this._refreshDailySalesChart("ByMarketCompleteSelection");
+                        var sSelectCriteria2 = sap.ui.core.Fragment.byId("idFilterDlg", "idSelectCriteria2").getSelectedItem().getText();
+                        this.getOwnerComponent().getModel("ApplicationModel").setProperty("/DailySalesBreadCrumbs", {
+                            "CurrentLocation": "By Region",
+                            "Links": [{
+                                "Name": sSelectCriteria1
+                            }, {
+                                "Name": sSelectCriteria2
+                            }]
+                        });
+                    }
                 } else {
-                    this._refreshDailySalesChart("ByMarketCompleteSelection");
-                    var sSelectCriteria2 = sap.ui.core.Fragment.byId("idFilterDlg", "idSelectCriteria2").getSelectedItem().getText();
-                    this.getOwnerComponent().getModel("ApplicationModel").setProperty("/DailySalesBreadCrumbs", {
-                        "CurrentLocation": "By Region",
-                        "Links": [{
-                            "Name": "Daily Sales"
-                        }, {
-                            "Name": sSelectCriteria1
-                        }, {
-                            "Name": sSelectCriteria2
-                        }]
-                    });
+                    if (sap.ui.core.Fragment.byId("idFilterDlg", "idSelectCriteria2").getSelectedKey() === '') {
+                        this._refreshDailyOrdersChart("ByChannelOnly");
+                        this.getOwnerComponent().getModel("ApplicationModel").setProperty("/DailyOrdersBreadCrumbs", {
+                            "CurrentLocation": sSelectCriteria1,
+                            "Links": []
+                        });
+                    } else {
+                        this._refreshDailyOrdersChart("ByChannelCompleteSelection");
+                        var sSelectCriteria2 = sap.ui.core.Fragment.byId("idFilterDlg", "idSelectCriteria2").getSelectedItem().getText();
+                        this.getOwnerComponent().getModel("ApplicationModel").setProperty("/DailyOrdersBreadCrumbs", {
+                            "CurrentLocation": "By Region",
+                            "Links": [{
+                                "Name": sSelectCriteria1
+                            }, {
+                                "Name": sSelectCriteria2
+                            }]
+                        });
+                    }
                 }
+
                 this._oFilterDlg.close();
             },
             onFilterCancel: function (oEvt) {
@@ -475,11 +494,9 @@ sap.ui.define([
                         label: "By Market",
                         data: [45, 25, 30],
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.8)',
-                            'rgba(54, 162, 235, 0.8)',
-                            'rgba(255, 206, 86, 0.8)',
-                            'rgba(215, 14, 18, 0.8)',
-                            'rgba(38, 167, 67, 0.8)'
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)'
                         ],
                         borderColor: [
                             '#e5e5e5'
@@ -500,7 +517,7 @@ sap.ui.define([
                             'transparent'
                         ],
                         borderColor: [
-                            'rgba(255, 99, 132, 0.8)'
+                            'rgba(255, 99, 132, 1)'
                         ],
                         borderWidth: 1
                     }, {
@@ -511,7 +528,7 @@ sap.ui.define([
                             'transparent'
                         ],
                         borderColor: [
-                            'rgba(54, 162, 235, 0.8)'
+                            'rgba(54, 162, 235, 1)'
                         ],
                         borderWidth: 1
                     }, {
@@ -522,7 +539,7 @@ sap.ui.define([
                             'transparent'
                         ],
                         borderColor: [
-                            'rgba(255, 206, 86, 0.8)'
+                            'rgba(255, 206, 86, 1)'
                         ],
                         borderWidth: 1
                     }];
@@ -537,11 +554,11 @@ sap.ui.define([
                         label: "By Market",
                         data: [40, 25, 35, 50, 10],
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.8)',
-                            'rgba(54, 162, 235, 0.8)',
-                            'rgba(255, 206, 86, 0.8)',
-                            'rgba(215, 14, 18, 0.8)',
-                            'rgba(38, 167, 67, 0.8)'
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(215, 14, 18, 1)',
+                            'rgba(38, 167, 67, 1)'
                         ],
                         borderColor: [
                             '#e5e5e5'
@@ -566,7 +583,7 @@ sap.ui.define([
                             'transparent'
                         ],
                         borderColor: [
-                            'rgba(255, 99, 132, 0.8)'
+                            'rgba(255, 99, 132, 1)'
                         ],
                         borderWidth: 1
                     }, {
@@ -577,7 +594,7 @@ sap.ui.define([
                             'transparent'
                         ],
                         borderColor: [
-                            'rgba(54, 162, 235, 0.8)'
+                            'rgba(54, 162, 235, 1)'
                         ],
                         borderWidth: 1
                     }, {
@@ -588,7 +605,7 @@ sap.ui.define([
                             'transparent'
                         ],
                         borderColor: [
-                            'rgba(255, 206, 86, 0.8)'
+                            'rgba(255, 206, 86, 1)'
                         ],
                         borderWidth: 1
                     }, {
@@ -599,7 +616,7 @@ sap.ui.define([
                             'transparent'
                         ],
                         borderColor: [
-                            'rgba(215, 14, 18, 0.8)'
+                            'rgba(215, 14, 18, 1)'
                         ],
                         borderWidth: 1
                     }, {
@@ -610,13 +627,165 @@ sap.ui.define([
                             'transparent'
                         ],
                         borderColor: [
-                            'rgba(38, 167, 67, 0.8)'
+                            'rgba(38, 167, 67, 1)'
                         ],
                         borderWidth: 1
                     }];
                 }
                 this.dailySalesChart1.update();
                 this.dailySalesChart2.update();
+            },
+            _refreshDailyOrdersChart: function (sParam) {
+                if (sParam === "ByChannelOnly") {
+                    // Filter selection is By Market only
+                    // for bar chart to doughnut - Upper Chart
+                    this.dailyOrdersChart1.data.labels = [];
+                    this.dailyOrdersChart1.data.datasets = [];
+                    this.dailyOrdersChart1.data.labels = ["Wholesale", "Retail", "eCommerce"];
+                    this.dailyOrdersChart1.data.datasets.push({
+                        label: "By Channel",
+                        data: [45, 25, 30],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)'
+                        ],
+                        borderColor: [
+                            '#e5e5e5'
+                        ],
+                        borderWidth: 2
+                    });
+                    this.dailyOrdersChart1.config.type = 'doughnut';
+                    delete this.dailyOrdersChart1.config.options.scales.yAxes;
+                    delete this.dailyOrdersChart1.config.options.scales.xAxes;
+
+                    // For line chart - Lower Chart
+                    this.dailyOrdersChart2.data.datasets = [];
+                    this.dailyOrdersChart2.data.datasets = [{
+                        label: 'Wholesale',
+                        data: [20, 35, 15, 45, 55],
+                        type: 'line',
+                        backgroundColor: [
+                            'transparent'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)'
+                        ],
+                        borderWidth: 1
+                    }, {
+                        label: 'Retail',
+                        data: [45, 15, 30, 35, 10],
+                        type: 'line',
+                        backgroundColor: [
+                            'transparent'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)'
+                        ],
+                        borderWidth: 1
+                    }, {
+                        label: 'eCommerce',
+                        data: [10, 15, 40, 25, 35],
+                        type: 'line',
+                        backgroundColor: [
+                            'transparent'
+                        ],
+                        borderColor: [
+                            'rgba(255, 206, 86, 1)'
+                        ],
+                        borderWidth: 1
+                    }];
+
+
+                } else {
+                    // for doughnut chart to bar -  Upper Chart
+                    this.dailyOrdersChart1.data.labels = [];
+                    this.dailyOrdersChart1.data.datasets = [];
+                    this.dailyOrdersChart1.data.labels = ["East", "West", "North", "South", "Central"];
+                    this.dailyOrdersChart1.data.datasets.push({
+                        label: "By Channel",
+                        data: [40, 25, 35, 50, 10],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(215, 14, 18, 1)',
+                            'rgba(38, 167, 67, 1)'
+                        ],
+                        borderColor: [
+                            '#e5e5e5'
+                        ],
+                        borderWidth: 2
+                    });
+                    this.dailyOrdersChart1.config.type = 'bar';
+                    this.dailyOrdersChart1.config.options.scales.yAxes = [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }];
+
+
+                    // For line chart -  Lower Chart
+                    this.dailyOrdersChart2.data.datasets = [];
+                    this.dailyOrdersChart2.data.datasets = [{
+                        label: 'East',
+                        data: [20, 35, 15, 45, 55],
+                        type: 'line',
+                        backgroundColor: [
+                            'transparent'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)'
+                        ],
+                        borderWidth: 1
+                    }, {
+                        label: 'West',
+                        data: [45, 15, 30, 35, 10],
+                        type: 'line',
+                        backgroundColor: [
+                            'transparent'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)'
+                        ],
+                        borderWidth: 1
+                    }, {
+                        label: 'North',
+                        data: [10, 15, 40, 25, 35],
+                        type: 'line',
+                        backgroundColor: [
+                            'transparent'
+                        ],
+                        borderColor: [
+                            'rgba(255, 206, 86, 1)'
+                        ],
+                        borderWidth: 1
+                    }, {
+                        label: 'South',
+                        data: [35, 18, 27, 10, 30],
+                        type: 'line',
+                        backgroundColor: [
+                            'transparent'
+                        ],
+                        borderColor: [
+                            'rgba(215, 14, 18, 1)'
+                        ],
+                        borderWidth: 1
+                    }, {
+                        label: 'Central',
+                        data: [55, 25, 36, 30, 15],
+                        type: 'line',
+                        backgroundColor: [
+                            'transparent'
+                        ],
+                        borderColor: [
+                            'rgba(38, 167, 67, 1)'
+                        ],
+                        borderWidth: 1
+                    }];
+                }
+                this.dailyOrdersChart1.update();
+                this.dailyOrdersChart2.update();
             }
         });
     });

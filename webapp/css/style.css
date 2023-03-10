@@ -112,6 +112,7 @@
 .boldTxtClss {
     color: #000000 !important;
     text-shadow: none !important;
+    font-size: 11.3px;
     font-weight: bold;
 }
 
@@ -191,6 +192,11 @@
     font-size: 15px;
 }
 
+.sideTextTxtCls {
+    color: #1d2d3e !important;
+    font-size: 10px;
+}
+
 .dailyOrderChartVboxCls {
     margin: 10px !important;
     background: #ffffff !important;
@@ -217,6 +223,11 @@
 
 .lightShadedTxt {
     color: #758ca4 !important;
+}
+
+.lightShadedSideTxt {
+    color: #758ca4 !important;
+    font-size: 10px;
 }
 
 .highLowDailyOrdersCls {

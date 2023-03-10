@@ -37,9 +37,13 @@ sap.ui.define([
                     "Low": "",
                     "OpenOrders": "3254",
                     "CloseOrders": "3280",
-                    "HighOrders": "1338",
+                    "HighOrders": "900M",
                     "LowOrders": "1239",
-                    "VolumeOrders": "1.72M",
+                    "VolumeOrders": "58M",
+                    "TotalSales": "900M USD",
+                    "TotalOrders": "485M",
+
+                    "VolumeSales": "100M",
                     "MarketSummary": "https://www.google.com/finance/?rlz=1C1GCEA_enIN919IN919&oq=Levi+share&aqs=chrome..69i57j0i512l3j0i22i30i625j69i65l2j69i60.4272j0j7&sourceid=chrome&ie=UTF-8&sa=X&ved=2ahUKEwiNg_PMvrf9AhWEIH0KHbDvDqwQ6M8CegQIKhAI"
                 });
                 this.getOwnerComponent().setModel(oModel, "ViewModel");
@@ -140,9 +144,38 @@ sap.ui.define([
             },
             onSelectMenuItem: function (oEvt) {
                 var sKey = oEvt.getParameter("listItem").getCustomData()[0].getValue();
+                let oViewmodel = this.getOwnerComponent().getModel("ViewModel")
+                oViewmodel.setProperty("/dailySalesCard", true);
+                oViewmodel.setData({
+                    "OptionIcon": "sap-icon://drill-up",
+                    "Amount": "17.61",
+                    "Currency": "USD",
+                    "Trend": "",
+                    "TrendOrders": "sap-icon://trend-up",
+                    "TrendValue": "",
+                    "TrendValueOrders": "23",
+                    "TrendPercentage": "",
+                    "TrendPercentageOrders": "(12%)",
+                    "TrendSymbol": "",
+                    "TrendSymbolOrders": "+",
+                    "High": "",
+                    "Low": "",
+                    "OpenOrders": "3254",
+                    "CloseOrders": "3280",
+                    "HighOrders": "900M",
+                    "LowOrders": "1239",
+                    "VolumeOrders": "58M",
+                    "TotalSales": "900M USD",
+                    "TotalOrders": "485M USD",
+
+                    "VolumeSales": "100M",
+                    "MarketSummary": "https://www.google.com/finance/?rlz=1C1GCEA_enIN919IN919&oq=Levi+share&aqs=chrome..69i57j0i512l3j0i22i30i625j69i65l2j69i60.4272j0j7&sourceid=chrome&ie=UTF-8&sa=X&ved=2ahUKEwiNg_PMvrf9AhWEIH0KHbDvDqwQ6M8CegQIKhAI"
+                });
+                oViewmodel.refresh(true);
                 if (sKey === "Home") {
                     this.onHomePress();
                 } else if (sKey === "Sales") {
+
                     this.onDailySalesPress();
                 } else if (sKey === "Orders") {
                     this.onDailyOrdersPress();
@@ -179,7 +212,7 @@ sap.ui.define([
                         labels: ["LSA", "LSE", "AMA"],
                         datasets: [{
                             label: "By Channel",
-                            data: [45, 60, 30],
+                            data: [220, 90, 175],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 1)',
                                 'rgba(54, 162, 235, 1)',
@@ -209,7 +242,7 @@ sap.ui.define([
                     data: {
                         datasets: [{
                             label: 'LSA',
-                            data: [20, 35, 15, 45, 55],
+                            data: [50, 45, 50, 45, 30],
                             type: 'line',
                             backgroundColor: [
                                 'transparent'
@@ -221,7 +254,7 @@ sap.ui.define([
                             borderWidth: 1
                         }, {
                             label: 'LSE',
-                            data: [45, 15, 30, 35, 10],
+                            data: [15, 20, 20, 25, 20],
                             type: 'line',
                             backgroundColor: [
                                 'transparent'
@@ -233,7 +266,7 @@ sap.ui.define([
                             borderWidth: 1
                         }, {
                             label: 'AMA',
-                            data: [10, 15, 40, 25, 35],
+                            data: [35, 25, 40, 35, 40],
                             type: 'line',
                             backgroundColor: [
                                 'transparent'
@@ -266,7 +299,7 @@ sap.ui.define([
                         labels: ["LSA", "LSE", "AMA"],
                         datasets: [{
                             label: "By Market",
-                            data: [45, 25, 30],
+                            data: [400, 200, 300],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 1)',
                                 'rgba(54, 162, 235, 1)',
@@ -280,16 +313,13 @@ sap.ui.define([
                     },
                     options: {
                         scales: {
-                            // x: {
-                            //     beginAtZero: true
-                            // },
                             y: {
                                 beginAtZero: true,
                                 min: 0
                             }
                         },
-
                         legend: { display: !0, position: "right" }
+                        
                     }
 
                 });
@@ -302,7 +332,7 @@ sap.ui.define([
                     data: {
                         datasets: [{
                             label: 'LSA',
-                            data: [20, 35, 15, 45, 55],
+                            data: [130, 105, 110, 115, 45],
                             type: 'line',
                             backgroundColor: [
                                 'transparent'
@@ -313,7 +343,7 @@ sap.ui.define([
                             borderWidth: 1
                         }, {
                             label: 'LSE',
-                            data: [45, 15, 30, 35, 10],
+                            data: [35, 25, 20, 35, 25],
                             type: 'line',
                             backgroundColor: [
                                 'transparent'
@@ -324,7 +354,7 @@ sap.ui.define([
                             borderWidth: 1
                         }, {
                             label: 'AMA',
-                            data: [10, 15, 40, 25, 35],
+                            data: [10, 60, 70, 75, 30],
                             type: 'line',
                             backgroundColor: [
                                 'transparent'
@@ -385,6 +415,68 @@ sap.ui.define([
             },
             onApplyFilter: function (oEvt) {
                 var sSelectCriteria1 = sap.ui.core.Fragment.byId("idFilterDlg", "idSelectCriteria1").getSelectedItem().getText();
+
+                let oViewmodel = this.getOwnerComponent().getModel("ViewModel");
+
+
+                switch (sap.ui.core.Fragment.byId("idFilterDlg", "idSelectCriteria2").getSelectedItem().getText()) {
+                    case "LSA":
+                        oViewmodel.setProperty("/TotalSales", "180M USD");
+                        oViewmodel.setProperty("/TotalOrders", "140M");
+                        oViewmodel.setProperty("/VolumeSales", "120");
+                        oViewmodel.setProperty("/VolumeOrders", "80");
+                        oViewmodel.setProperty("/dailySalesCard", false);
+                        oViewmodel.refresh(true);
+                        break;
+
+                    case "LSE":
+                        oViewmodel.setProperty("/TotalSales", "140M USD");
+                        oViewmodel.setProperty("/TotalOrders", "120M");
+                        oViewmodel.setProperty("/VolumeSales", "80");
+                        oViewmodel.setProperty("/VolumeOrders", "50");
+                        oViewmodel.setProperty("/dailySalesCard", false);
+                        oViewmodel.refresh(true);
+                        break;
+                    case "AMA":
+                        oViewmodel.setProperty("/TotalSales", "110M USD");
+                        oViewmodel.setProperty("/TotalOrders", "90M");
+                        oViewmodel.setProperty("/VolumeSales", "100");
+                        oViewmodel.setProperty("/VolumeOrders", "90");
+                        oViewmodel.setProperty("/dailySalesCard", false);
+                        oViewmodel.refresh(true);
+                        break;
+
+                    default:
+                        oViewmodel.setProperty("/dailySalesCard", true);
+                        this.getOwnerComponent().getModel("ViewModel").setData({
+                            "OptionIcon": "sap-icon://drill-up",
+                            "Amount": "17.61",
+                            "Currency": "USD",
+                            "Trend": "",
+                            "TrendOrders": "sap-icon://trend-up",
+                            "TrendValue": "",
+                            "TrendValueOrders": "23",
+                            "TrendPercentage": "",
+                            "TrendPercentageOrders": "(12%)",
+                            "TrendSymbol": "",
+                            "TrendSymbolOrders": "+",
+                            "High": "",
+                            "Low": "",
+                            "OpenOrders": "3254",
+                            "CloseOrders": "3280",
+                            "HighOrders": "900M",
+                            "LowOrders": "1239",
+                            "VolumeOrders": "58M",
+                            "TotalSales": "900M USD",
+                            "TotalOrders": "485M USD",
+
+                            "VolumeSales": "100M",
+                            "MarketSummary": "https://www.google.com/finance/?rlz=1C1GCEA_enIN919IN919&oq=Levi+share&aqs=chrome..69i57j0i512l3j0i22i30i625j69i65l2j69i60.4272j0j7&sourceid=chrome&ie=UTF-8&sa=X&ved=2ahUKEwiNg_PMvrf9AhWEIH0KHbDvDqwQ6M8CegQIKhAI"
+                        });
+                        oViewmodel.refresh(true);
+                        break;
+                }
+
                 if (oEvt.getSource().getParent().getCustomData()[0].getValue() === "DailySales") {
                     if (sap.ui.core.Fragment.byId("idFilterDlg", "idSelectCriteria2").getSelectedKey() === '') {
                         this._refreshDailySalesChart("ByMarketOnly");
@@ -552,7 +644,7 @@ sap.ui.define([
                     this.dailySalesChart1.data.labels = ["East", "West", "North", "South", "Central"];
                     this.dailySalesChart1.data.datasets.push({
                         label: "By Market",
-                        data: [40, 25, 35, 50, 10],
+                        data: [270, 230, 170, 230, 100],
                         backgroundColor: [
                             'rgba(255, 99, 132, 1)',
                             'rgba(54, 162, 235, 1)',
@@ -577,7 +669,7 @@ sap.ui.define([
                     this.dailySalesChart2.data.datasets = [];
                     this.dailySalesChart2.data.datasets = [{
                         label: 'East',
-                        data: [20, 35, 15, 45, 55],
+                        data: [70, 30, 60, 80, 30],
                         type: 'line',
                         backgroundColor: [
                             'transparent'
@@ -588,7 +680,7 @@ sap.ui.define([
                         borderWidth: 1
                     }, {
                         label: 'West',
-                        data: [45, 15, 30, 35, 10],
+                        data: [60, 20, 50, 70, 30],
                         type: 'line',
                         backgroundColor: [
                             'transparent'
@@ -599,7 +691,7 @@ sap.ui.define([
                         borderWidth: 1
                     }, {
                         label: 'North',
-                        data: [10, 15, 40, 25, 35],
+                        data: [30, 40, 40, 20, 40],
                         type: 'line',
                         backgroundColor: [
                             'transparent'
@@ -610,7 +702,7 @@ sap.ui.define([
                         borderWidth: 1
                     }, {
                         label: 'South',
-                        data: [35, 18, 27, 10, 30],
+                        data: [60, 20, 50, 70, 30],
                         type: 'line',
                         backgroundColor: [
                             'transparent'
@@ -621,7 +713,7 @@ sap.ui.define([
                         borderWidth: 1
                     }, {
                         label: 'Central',
-                        data: [55, 25, 36, 30, 15],
+                        data: [15, 20, 15, 30, 20],
                         type: 'line',
                         backgroundColor: [
                             'transparent'

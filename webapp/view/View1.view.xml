@@ -78,42 +78,54 @@
                     <Link text="{ApplicationModel>Name}" class="breadcrumbLinks" />
                 </Breadcrumbs>
                 <VBox id="idSalesTrendVBox" class="sapUiSmallMarginTop vboxOrdersUp">
-                    <Text text="Orders" class="ordersTxtCls" />
+                    <HBox><Text text="Sales " class="ordersTxtCls sapUiTinyMarginEnd" /><Text text=" (March 9th)" class="sideTextTxtCls" /></HBox>
                     <HBox justifyContent="SpaceBetween" alignItems="End" alignContent="End" width="100%" class="sapUiTinyMarginBottom">
-                        <ObjectNumber class="objectNumberTxt objectNumberUnit sapUiTinyMarginTop" number="{path: 'ViewModel>/VolumeOrders', formatter: '.formatter.getVolumeWithoutUnit'}" unit="M" />
+                    <HBox>
+                    <ObjectNumber class="objectNumberTxt objectNumberUnit sapUiTinyMarginTop sapUiTinyMarginEnd" number="{path: 'ViewModel>/VolumeSales', formatter: '.formatter.getVolumeWithoutUnit'}" unit="M USD" />
+                        <!-- <Text text="USD" class="trendTxtCls" /> -->
+                    </HBox>
+                        
                         <HBox class="sapUiSmallMarginEnd">
                             <core:Icon src="{ViewModel>/TrendOrders}" color="#1d2d3e" />
                             <Text text="{ViewModel>/TrendSymbolOrders}{ViewModel>/TrendValueOrders} {ViewModel>/TrendPercentageOrders}" class="trendTxtCls sapUiTinyMarginBegin" />
                         </HBox>
                     </HBox>
                 </VBox>
-                <VBox class="highLowDailyOrdersCls">
-                    <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center">
-                        <HBox alignContent="Center" justifyContent="Start" alignItems="Center" width="50%" renderType="Bare">
+                <VBox class="highLowDailyOrdersCls" visible="{ViewModel>/dailySalesCard}">
+                    <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center" >
+                        <HBox alignContent="Center" justifyContent="Start" alignItems="Center" width="80%" renderType="Bare">
                             <core:Icon src="sap-icon://arrow-top" color="green" size="14px" class="sapUiTinyMarginEnd" />
-                            <Text text="Daily Sales (LSA):" class="lightShadedTxt" />
+                            <HBox>
+                            <Text text="Daily Sales (LSA)" class="lightShadedTxt sapUiTinyMarginEnd" />
+                            <Text text="(March 9th):" class="lightShadedSideTxt" />
+                            </HBox>
+                            
                         </HBox>
-                        <Text text="45M" class="boldTxtClss" />
+                        <Text text="45M USD" class="boldTxtClss" />
                     </HBox>
                     <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMarginTop">
-                        <HBox alignContent="Center" justifyContent="Start" alignItems="Center" width="50%" renderType="Bare">
+                        <HBox alignContent="Center" justifyContent="Start" alignItems="Center" width="80%" renderType="Bare">
                             <core:Icon src="sap-icon://arrow-bottom" color="red" size="14px" class="sapUiTinyMarginEnd" />
-                            <Text text="Daily Sales (LSE):" class="lightShadedTxt" />
+                            <HBox>
+                            <Text text="Daily Sales (LSE)" class="lightShadedTxt sapUiTinyMarginEnd" />
+                            <Text text="(March 9th):" class="lightShadedSideTxt" />
+                            </HBox>
+                            
                         </HBox>
-                        <Text text="25M" class="boldTxtClss" />
+                        <Text text="25M USD" class="boldTxtClss" />
                     </HBox>
                 </VBox>
                 <VBox class="dailyOrderChartVboxCls">
                     <HBox justifyContent="SpaceBetween" alignContent="Center" alignItems="Center" width="100%" class="sapUiTinyMarginTop sapUiSmallMarginBottom">
                         <HBox justifyContent="Start" alignContent="Center" alignItems="Center" width="50%" class="sapUiTinyMarginBegin">
                             <VBox justifyContent="Start" alignContent="Start" alignItems="Start" class="sapUiMediumMarginEnd">
-                                <Text text="High" class="lightShadedTxt" />
-                                <ObjectNumber number="{ViewModel>/HighOrders}" state="Success" />
+                                <Text text="Total" class="lightShadedTxt" />
+                                <ObjectNumber number="{ViewModel>/TotalSales}" state="Success" />
                             </VBox>
-                            <VBox justifyContent="Start" alignContent="Start" alignItems="Start">
+                            <!-- <VBox justifyContent="Start" alignContent="Start" alignItems="Start">
                                 <Text text="Low" class="lightShadedTxt"/>
                                 <ObjectNumber number="{ViewModel>/LowOrders}" state="Error" />
-                            </VBox>
+                            </VBox> -->
                         </HBox>
                         <VBox justifyContent="Start" alignContent="End" alignItems="End" class="sapUiSmallMarginEnd">
                             <Text text="Range:" class="lightShadedTxt"/>
@@ -176,42 +188,48 @@
                     <Link text="{ApplicationModel>Name}" class="breadcrumbLinks" />
                 </Breadcrumbs>
                 <VBox id="idOrderTrendVBox" class="sapUiSmallMarginTop vboxOrdersUp">
-                    <Text text="Orders" class="ordersTxtCls" />
+                    <HBox><Text text="Orders " class="ordersTxtCls sapUiTinyMarginEnd" /><Text text=" (March 9th)" class="sideTextTxtCls" /></HBox>
                     <HBox justifyContent="SpaceBetween" alignItems="End" alignContent="End" width="100%" class="sapUiTinyMarginBottom">
-                        <ObjectNumber class="objectNumberTxt objectNumberUnit sapUiTinyMarginTop" number="{path: 'ViewModel>/VolumeOrders', formatter: '.formatter.getVolumeWithoutUnit'}" unit="M" />
+                        <ObjectNumber class="objectNumberTxt objectNumberUnit sapUiTinyMarginTop" number="{path: 'ViewModel>/VolumeOrders', formatter: '.formatter.getVolumeWithoutUnit'}" unit="M USD" />
                         <HBox class="sapUiSmallMarginEnd">
                             <core:Icon src="{ViewModel>/TrendOrders}" color="#1d2d3e" />
                             <Text text="{ViewModel>/TrendSymbolOrders}{ViewModel>/TrendValueOrders} {ViewModel>/TrendPercentageOrders}" class="trendTxtCls sapUiTinyMarginBegin" />
                         </HBox>
                     </HBox>
                 </VBox>
-                <VBox class="highLowDailyOrdersCls">
+                <VBox class="highLowDailyOrdersCls" visible="{ViewModel>/dailySalesCard}">
                     <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center">
-                        <HBox alignContent="Center" justifyContent="Start" alignItems="Center" width="50%" renderType="Bare">
+                        <HBox alignContent="Center" justifyContent="Start" alignItems="Center" width="80%" renderType="Bare">
                             <core:Icon src="sap-icon://arrow-top" color="green" size="14px" class="sapUiTinyMarginEnd" />
-                            <Text text="Daily Sales (LSA):" class="lightShadedTxt" />
+                           <HBox>
+                            <Text text="Daily Orders (LSA)" class="lightShadedTxt sapUiTinyMarginEnd" />
+                            <Text text="(March 9th):" class="lightShadedSideTxt" />
+                            </HBox>
                         </HBox>
-                        <Text text="45M" class="boldTxtClss" />
+                        <Text text="35M USD" class="boldTxtClss" />
                     </HBox>
                     <HBox alignContent="Center" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMarginTop">
-                        <HBox alignContent="Center" justifyContent="Start" alignItems="Center" width="50%" renderType="Bare">
+                        <HBox alignContent="Center" justifyContent="Start" alignItems="Center" width="80%" renderType="Bare">
                             <core:Icon src="sap-icon://arrow-bottom" color="red" size="14px" class="sapUiTinyMarginEnd" />
-                            <Text text="Daily Sales (LSE):" class="lightShadedTxt" />
+                           <HBox>
+                            <Text text="Daily Orders (LSA)" class="lightShadedTxt sapUiTinyMarginEnd" />
+                            <Text text="(March 9th):" class="lightShadedSideTxt" />
+                            </HBox>
                         </HBox>
-                        <Text text="25M" class="boldTxtClss" />
+                        <Text text="23M USD" class="boldTxtClss" />
                     </HBox>
                 </VBox>
                 <VBox class="dailyOrderChartVboxCls">
                     <HBox justifyContent="SpaceBetween" alignContent="Center" alignItems="Center" width="100%" class="sapUiTinyMarginTop sapUiSmallMarginBottom">
                         <HBox justifyContent="Start" alignContent="Center" alignItems="Center" width="50%" class="sapUiTinyMarginBegin">
                             <VBox justifyContent="Start" alignContent="Start" alignItems="Start" class="sapUiMediumMarginEnd">
-                                <Text text="High" class="lightShadedTxt"/>
-                                <ObjectNumber number="{ViewModel>/HighOrders}" state="Success" />
+                                <Text text="Total" class="lightShadedTxt"/>
+                                <ObjectNumber number="{ViewModel>/TotalOrders}" state="Success" />
                             </VBox>
-                            <VBox justifyContent="Start" alignContent="Start" alignItems="Start">
+                            <!-- <VBox justifyContent="Start" alignContent="Start" alignItems="Start">
                                 <Text text="Low" class="lightShadedTxt"/>
                                 <ObjectNumber number="{ViewModel>/LowOrders}" state="Error" />
-                            </VBox>
+                            </VBox> -->
                         </HBox>
                         <VBox justifyContent="Start" alignContent="End" alignItems="End" class="sapUiSmallMarginEnd">
                             <Text text="Range:" class="lightShadedTxt" />
